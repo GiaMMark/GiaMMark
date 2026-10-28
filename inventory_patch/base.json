@@ -1,0 +1,8 @@
+{
+  "baseVersion": "2.45.0",
+  "description": "UI overlay for the supplied ox_inventory archive; original Lua, data and compiled bundles are not included in this patch.",
+  "requiredBaseFilesSha256": {
+    "web/build/assets/index-7c4ea07a.js": "392b2fe275be421e5b26ad83e404cd82c0010d5ca06fc88b6eccc7ceaa07ab31",
+    "web/build/assets/index-9aba2ab3.css": "dfacb1fe2504406c1f94d9b3c69e9e8f89bd74178d3ccac3de1cbf17f8df2fbf"
+  }
+}

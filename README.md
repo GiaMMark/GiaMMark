@@ -18,3 +18,9 @@ Preset: ESX + ox_inventory + illenium-appearance. Le API sono state verificate s
 Loading screen standalone coordinata con il multicharacter: tema monocromatico, scena astratta animata, avanzamento FiveM reale, musica ambient originale e controlli audio. Branding, testi, link, musica e chiusura si configurano in `config.lua`.
 
 [Installazione loadscreen](void_loadscreen/README.md) · [Config](void_loadscreen/config.lua) · [Download ZIP](downloads/void_loadscreen.zip) · [Pack completo](downloads/void_pack.zip)
+
+## VOID Survival · Inventory
+
+Patch grafica in stile DayZ per l'ox_inventory fornito: vicinanze, profilo sopravvissuto e inventario personale, logo VOID, metadati e operazioni originali.
+
+[Anteprima e installazione](inventory_patch/README.md) · [Config grafico](inventory_patch/ox_inventory/web/build/void-config.js) · [Scarica la patch](downloads/ox_inventory_void_dayz.zip)
