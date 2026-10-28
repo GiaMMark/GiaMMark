@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <title>VOID — La tua prossima storia</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="app" tabindex="-1" hidden>
+    <div class="preview-world" aria-hidden="true"><div class="world-grid"></div><div class="world-slab"></div><div class="world-ring"></div><span class="world-coordinate">V / 00.000</span></div>
+    <div class="app-shade" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" aria-label="VOID" tabindex="-1"><span id="brand-name">VOID</span><span class="wordmark-dot">®</span></a>
+      <div class="header-rule" aria-hidden="true"></div>
+      <div class="system-status"><span class="status-dot"></span><span>SISTEMA ONLINE</span><span class="status-divider">/</span><span id="clock">00:00</span></div>
+    </header>
+    <main>
+      <section class="control-panel" aria-label="Archivio personaggi">
+        <div id="selection-view">
+          <div class="eyebrow"><span class="tiny-cross" aria-hidden="true">+</span><span>IL TUO SPAZIO. LE TUE REGOLE.</span></div>
+          <h1>Ogni storia<br>inizia dal vuoto<span class="heading-dot">.</span></h1>
+          <div class="section-label"><span>ARCHIVIO PERSONAGGI</span><span id="slot-count">00 / 00</span></div>
+          <div id="character-list" class="character-list" role="group" aria-label="Scegli un personaggio"></div>
+          <div id="character-details" class="character-details" hidden>
+            <dl class="detail-grid">
+              <div><dt>PROFESSIONE</dt><dd id="detail-job">—</dd></div>
+              <div><dt>DATA DI NASCITA</dt><dd id="detail-birth">—</dd></div>
+              <div><dt>CONTANTI</dt><dd id="detail-cash">—</dd></div>
+              <div><dt>CONTO BANCARIO</dt><dd id="detail-bank">—</dd></div>
+            </dl>
+            <button type="button" id="enter-button" class="primary-button"><span>ENTRA IN VOID</span><span class="diagonal-arrow" aria-hidden="true"></span></button>
+            <button type="button" id="delete-button" class="quiet-button delete-link">Elimina personaggio</button>
+          </div>
+          <p id="empty-message" class="empty-message" hidden>Nessuna storia, ancora.<br>Scegli uno slot e scrivi la prima.</p>
+        </div>
+        <section id="identity-view" hidden aria-label="Crea la tua identità">
+          <button type="button" id="back-button" class="back-button"><span aria-hidden="true">←</span> ARCHIVIO PERSONAGGI</button>
+          <div class="eyebrow identity-eyebrow"><span class="tiny-cross" aria-hidden="true">+</span><span id="new-slot-label">NUOVA IDENTITÀ / 01</span></div>
+          <h1>Comincia<br>da chi sei<span class="heading-dot">.</span></h1>
+          <p class="form-intro">Un nome. Una storia. Tutto il resto lo decidi tu.</p>
+          <form id="identity-form">
+            <div class="form-grid">
+              <label class="field">NOME<input name="firstname" id="firstname" type="text" autocomplete="off" placeholder="Es. Andrea" required></label>
+              <label class="field">COGNOME<input name="lastname" id="lastname" type="text" autocomplete="off" placeholder="Es. Moretti" required></label>
+              <label class="field">DATA DI NASCITA<input name="dateofbirth" id="dateofbirth" type="date" required></label>
+              <label class="field">SESSO<select name="sex" id="sex" required><option value="" disabled selected>Seleziona</option><option value="m">Maschile</option><option value="f">Femminile</option></select></label>
+              <label class="field">ALTEZZA <span class="field-unit">/ CM</span><input name="height" id="height" type="number" inputmode="numeric" placeholder="175" step="1" required></label>
+              <label class="field">NAZIONALITÀ<select name="nationality" id="nationality" required><option value="" disabled selected>Seleziona</option></select></label>
+            </div>
+            <p class="form-note"><span aria-hidden="true">↳</span> Usa dati del personaggio, non i tuoi dati reali.</p>
+            <button type="submit" id="create-button" class="primary-button"><span>CREA LA TUA IDENTITÀ</span><span class="diagonal-arrow" aria-hidden="true"></span></button>
+          </form>
+        </section>
+        <div id="feedback" role="status" aria-live="polite" hidden></div>
+        <div class="panel-footnote"><span class="footnote-line" aria-hidden="true"></span><span id="tagline">NON SEGUIRE UNA STORIA. VIVI LA TUA.</span></div>
+      </section>
+      <section class="stage" aria-label="Anteprima del personaggio">
+        <div class="stage-top"><span class="bracket" aria-hidden="true">┌</span><span>IDENTITY ARCHIVE</span><span id="stage-index">V.01</span><span class="bracket" aria-hidden="true">┐</span></div>
+        <div class="stage-cross" aria-hidden="true"><span></span><span></span></div>
+        <div class="stage-caption"><div class="stage-eyebrow"><span id="stage-label">IL PROSSIMO CAPITOLO</span><span class="caption-line" aria-hidden="true"></span></div><h2 id="stage-name">La tua<br>identità.</h2><p id="stage-description">Il vuoto è solo un nuovo inizio.</p></div>
+        <div class="stage-bottom"><span aria-hidden="true">└</span><span>YOUR LIFE. YOUR RULES.</span><span aria-hidden="true">┘</span></div>
+      </section>
+    </main>
+    <footer class="bottom-bar"><span>VOID ROLEPLAY</span><span>UN MONDO DA RISCRIVERE<span class="footer-plus" aria-hidden="true">+</span></span><span>EST. 2026</span></footer>
+    <div id="loading-overlay" hidden role="status" aria-live="polite"><div class="loading-mark">V<span>.</span></div><p id="loading-text">APERTURA DEL TUO CAPITOLO</p><div class="loading-track"></div></div>
+    <dialog id="delete-dialog" aria-labelledby="delete-title" aria-describedby="delete-description"><form method="dialog" id="delete-form"><div class="eyebrow">ARCHIVIO / OPERAZIONE DEFINITIVA</div><h2 id="delete-title">L'ultimo capitolo.</h2><p id="delete-description">Il personaggio e i suoi progressi verranno eliminati. Questa azione non può essere annullata.</p><label class="field" for="delete-confirmation">SCRIVI <strong id="confirmation-word">ELIMINA</strong> PER CONFERMARE<input id="delete-confirmation" type="text" autocomplete="off" spellcheck="false" required></label><p id="delete-error" role="alert" hidden></p><div class="dialog-actions"><button type="button" id="cancel-delete" class="secondary-button">ANNULLA</button><button type="submit" id="confirm-delete" class="danger-button" disabled>ELIMINA</button></div></form></dialog>
+  </div>
+</body>
+</html>
