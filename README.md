@@ -12,3 +12,9 @@ Prima resource custom per il server VOID: identity e multicharacter con UI minim
 [Installazione e configurazione](void_characters/README.md) · [Config](void_characters/config.lua) · [Compatibilità](void_characters/docs/COMPATIBILITY.md)
 
 Preset: ESX + ox_inventory + illenium-appearance. Le API sono state verificate sui sorgenti upstream; prima dell'apertura va completato il collaudo su FXServer.
+
+## VOID · Loadscreen
+
+Loading screen standalone coordinata con il multicharacter: tema monocromatico, scena astratta animata, avanzamento FiveM reale, musica ambient originale e controlli audio. Branding, testi, link, musica e chiusura si configurano in `config.lua`.
+
+[Installazione loadscreen](void_loadscreen/README.md) · [Config](void_loadscreen/config.lua) · [Download ZIP](downloads/void_loadscreen.zip) · [Pack completo](downloads/void_pack.zip)

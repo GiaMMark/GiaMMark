@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>VOID — Il prossimo capitolo</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div id="screen">
+    <div class="ambient-scene" aria-hidden="true">
+      <div class="scene-grid"></div><div class="orb-glow"></div>
+      <div class="orb-system"><div class="orb-orbit orbit-back"></div><div class="orb-core"></div><div class="orb-orbit orbit-front"></div><div class="orbit-path"></div><span class="orbit-node"></span></div>
+      <div class="scene-vignette"></div><div class="scan-line"></div>
+    </div>
+    <header class="header">
+      <div class="wordmark"><span id="brand-name">VOID</span><span class="registered" aria-hidden="true">®</span></div>
+      <span class="header-rule" aria-hidden="true"></span>
+      <span id="preview-badge" hidden>ANTEPRIMA</span>
+      <div class="header-status"><span class="status-dot" aria-hidden="true"></span><span>ESTABLISHING CONNECTION</span><span class="status-separator">/</span><span id="clock">00:00</span></div>
+    </header>
+    <main>
+      <div class="hero-meta"><p class="eyebrow"><span aria-hidden="true">+</span><span id="eyebrow">ROLEPLAY EXPERIENCE</span></p><span class="chapter-code">CHAPTER 00<span class="chapter-line" aria-hidden="true"></span>THE ARRIVAL</span></div>
+      <div class="hero-layout">
+        <section class="hero-copy" aria-labelledby="headline">
+          <span class="small-label">UN ALTRO MONDO È POSSIBILE</span>
+          <h1 id="headline">Ogni storia<br>inizia dal vuoto.</h1>
+          <p id="description">Una città. Infinite possibilità.<br>La prossima storia porta il tuo nome.</p>
+          <div class="hero-index"><span class="index-line" aria-hidden="true"></span><span>YOUR LIFE. YOUR RULES.</span></div>
+        </section>
+        <div class="orb-annotation" aria-hidden="true"><span class="annotation-cross">+</span><span>COORDINATE UNKNOWN<br>DESTINATION: YOUR NEXT LIFE</span><span class="annotation-line"></span></div>
+        <aside class="world-note"><span class="small-label">PRIMA DI ENTRARE</span><p>Entra nel mondo.<br>Lascia il segno.</p><button type="button" id="rules-button" class="text-button">IL NOSTRO PATTO <span class="diagonal-arrow" aria-hidden="true"></span></button></aside>
+      </div>
+      <div class="hero-bottom"><span id="player-welcome">IL TUO PROSSIMO CAPITOLO STA ARRIVANDO.</span><span>V / 01 — ∞</span></div>
+      <section class="loading-section" aria-label="Avanzamento caricamento">
+        <div class="loading-heading"><div><span class="small-label">CONNESSIONE AL MONDO</span><p id="loading-status" role="status" aria-live="polite">Connessione al server</p></div><div class="loading-number"><span id="progress-value">0</span><span class="percent-sign">%</span></div></div>
+        <div id="loading-progress" class="loading-track" role="progressbar" aria-label="Caricamento risorse" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-bar"></span><span class="track-tick tick-1"></span><span class="track-tick tick-2"></span><span class="track-tick tick-3"></span></div>
+        <div class="loading-detail"><div id="tips" class="tip"><span class="tip-marker" aria-hidden="true">↳</span><p id="tip-text">Dai un’identità al tuo personaggio. Il resto arriva vivendo.</p></div><span id="transfer-state">ATTENDI IL CARICAMENTO</span></div>
+      </section>
+    </main>
+    <footer class="footer">
+      <section id="music-player" class="music-player" aria-label="Musica di caricamento">
+        <button type="button" id="music-toggle" class="audio-toggle" aria-label="Riproduci musica" aria-pressed="false"><span id="play-symbol" aria-hidden="true"></span></button>
+        <div class="track-info"><span id="music-title">VOID / SIGNAL 01</span><span id="music-status">ATTIVA L’AUDIO</span></div>
+        <div class="playlist-controls" id="playlist-controls" hidden><button type="button" id="music-prev" class="icon-button" aria-label="Traccia precedente">←</button><button type="button" id="music-next" class="icon-button" aria-label="Traccia successiva">→</button></div>
+        <span class="audio-divider" aria-hidden="true"></span>
+        <button type="button" id="music-mute" class="icon-button volume-icon" aria-label="Disattiva audio" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M9 4 5 7H2v6h3l4 3V4Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path class="sound-waves" d="M12 7c2 1.6 2 4.4 0 6m3-9c4 3 4 9 0 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path class="muted-cross" d="m12 7 6 6m0-6-6 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></button>
+        <label class="volume-control"><span class="sr-only">Volume musica</span><input id="music-volume" type="range" min="0" max="100" step="1" value="22" aria-label="Volume musica"></label>
+        <span class="space-hint">SPAZIO / PAUSA</span>
+      </section>
+      <nav id="links" class="social-links" aria-label="Community"></nav>
+      <span class="footer-caption">MADE OF POSSIBILITIES.</span>
+    </footer>
+    <dialog id="rules-dialog" aria-labelledby="rules-title"><div class="dialog-heading"><span class="small-label">VOID / COMMUNITY</span><button type="button" id="rules-close" class="icon-button" aria-label="Chiudi regolamento">×</button></div><h2 id="rules-title">Il nostro patto.</h2><p class="dialog-intro">Ogni storia conta. Anche quella degli altri.</p><ol id="rules-list"></ol><button type="button" id="rules-done" class="dialog-confirm">CI VEDIAMO DALL’ALTRA PARTE<span class="diagonal-arrow" aria-hidden="true"></span></button></dialog>
+    <audio id="audio" preload="none"></audio>
+  </div>
+</body>
+</html>

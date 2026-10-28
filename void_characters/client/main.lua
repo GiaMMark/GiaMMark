@@ -6,6 +6,16 @@ local esxLoaded = false
 
 RegisterNetEvent('esx:playerLoaded', function() esxLoaded = true end)
 
+local function closeLoadingScreen()
+    if GetResourceState('void_loadscreen') == 'started' then
+        local ok, err = pcall(function() exports.void_loadscreen:Finish() end)
+        if ok then return end
+        print('[void_characters] Transizione loadscreen: ' .. tostring(err))
+    end
+    ShutdownLoadingScreen()
+    ShutdownLoadingScreenNui()
+end
+
 local function send(action, payload)
     SendNUIMessage({action = action, payload = payload})
 end
@@ -297,8 +307,7 @@ CreateThread(function()
     while not nuiReady and GetGameTimer() < nuiDeadline do Wait(100) end
     if not nuiReady then
         phase = 'failed'
-        ShutdownLoadingScreen()
-        ShutdownLoadingScreenNui()
+        closeLoadingScreen()
         DoScreenFadeIn(0)
         VoidIntegrations.notify('Interfaccia VOID non disponibile. Controlla i file NUI e riconnettiti.', 'error')
         return
@@ -309,8 +318,7 @@ CreateThread(function()
     if not ok then
         phase = 'failed'
         cleanup()
-        ShutdownLoadingScreen()
-        ShutdownLoadingScreenNui()
+        closeLoadingScreen()
         DoScreenFadeIn(500)
         errorMessage('Impossibile preparare la scena. Controlla Config.Scene e la console F8.')
         print('[void_characters] ' .. tostring(err))
@@ -322,8 +330,7 @@ CreateThread(function()
     if result.ok == false then payload.error = result.error end
     send('open', payload)
     SetNuiFocus(true, true)
-    ShutdownLoadingScreen()
-    ShutdownLoadingScreenNui()
+    closeLoadingScreen()
     DoScreenFadeIn(650)
     VoidIntegrations.showText('VOID · Seleziona un’identità per continuare')
     if result.ok == false then VoidIntegrations.notify(result.error, 'error') end

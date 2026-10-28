@@ -206,7 +206,11 @@ local function simulateLogin(appearance, options)
         AddEventHandler = function(name, callback) handlers[name] = callback end,
         GetCurrentResourceName = function() return 'void_characters' end,
         NetworkIsPlayerActive = function() return true end,
-        GetResourceState = function() return 'missing' end,
+        GetResourceState = function(name) return name == 'void_loadscreen' and options.loadscreen and 'started' or 'missing' end,
+        exports = {void_loadscreen = {Finish = function()
+            if options.loadscreenFailure then error('Export unavailable') end
+            log[#log + 1] = 'loadscreenFinish'
+        end}},
         GetGameTimer = function() return clock end,
         Wait = function(ms) clock = clock + math.max(ms, 1) end,
         SendNUIMessage = function(message) log[#log + 1] = message.action end,
@@ -239,6 +243,8 @@ local function simulateLogin(appearance, options)
     env.SetPlayerControl = function(_, enabled) controlsEnabled = enabled end
     env.FreezeEntityPosition = function(_, enabled) frozen = enabled end
     env.SetPlayerInvincible = function(_, enabled) invincible = enabled end
+    env.ShutdownLoadingScreen = function() log[#log + 1] = 'nativeLoadingClose' end
+    env.ShutdownLoadingScreenNui = function() log[#log + 1] = 'nativeNuiClose' end
     assert(loadfile('client/main.lua', 't', env))()
     callbacks.ready({}, function(result) eq(result.ok, true) end)
     threads[#threads]()
@@ -285,6 +291,29 @@ test('Resource stop during selection restores controls and the pre-login invento
     eq(result.invincible, false)
     eq(result.creatorCalls, 0)
     eq(result.context, nil)
+end)
+
+test('VOID Loadscreen receives Finish after the character selector has opened', function()
+    local result = simulateLogin({model = 'mp_m_freemode_01'}, {loadscreen = true})
+    local openIndex, finishIndex
+    for i, event in ipairs(result.log) do
+        if event == 'open' then openIndex = i end
+        if event == 'loadscreenFinish' then finishIndex = i end
+        assert(event ~= 'nativeLoadingClose' and event ~= 'nativeNuiClose', 'Native close bypassed the coordinated fade')
+    end
+    assert(openIndex and finishIndex and finishIndex > openIndex, 'Loadscreen closed before selector readiness')
+end)
+
+test('Loadscreen export failure falls back to both native shutdown calls', function()
+    local result = simulateLogin({model = 'mp_m_freemode_01'}, {loadscreen = true, loadscreenFailure = true})
+    local native, nui = 0, 0
+    for _, event in ipairs(result.log) do
+        if event == 'nativeLoadingClose' then native = native + 1 end
+        if event == 'nativeNuiClose' then nui = nui + 1 end
+    end
+    eq(native, 1)
+    eq(nui, 1)
+    assert(result.context, 'Fallback prevented successful login')
 end)
 
 print(('Client provider tests: %d passed'):format(passed))

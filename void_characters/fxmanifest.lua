@@ -4,7 +4,7 @@ game 'gta5'
 name 'void_characters'
 author 'VOID'
 description 'VOID identity & multicharacter — ESX, QBCore, Qbox'
-version '0.1.0'
+version '0.1.1'
 
 shared_scripts {
     '@ox_lib/init.lua',

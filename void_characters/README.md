@@ -6,6 +6,8 @@ Prima risorsa del pack VOID: selezione dei personaggi e registrazione dell'ident
 
 L'anteprima usa dati dimostrativi e un fondale grafico. In FiveM il fondale è trasparente e lascia visibile il personaggio nella scena di gioco.
 
+Con `void_loadscreen` avviata, la versione 0.1.1 attiva la dissolvenza della schermata di caricamento soltanto dopo l'apertura del selettore. La loadscreen è opzionale: senza di essa usa le native FiveM. Avvia `void_loadscreen` prima di `void_characters` e consulta la sua [guida](../void_loadscreen/README.md).
+
 Non è ancora un intero gamemode: lavori, economia, garage, housing, inventario e negozi rimangono responsabilità delle rispettive risorse. VOID gestisce il percorso di accesso e offre punti di integrazione per gli altri script.
 
 ## Stato e requisiti
@@ -176,4 +178,4 @@ python3 tests/nui.test.py --chromium /usr/bin/chromium
 
 Il test avvia un server HTTP locale temporaneo e simula le callback NUI. `--base-url`, `--chromium` e `--screenshots` permettono di usare un server, browser o cartella di output diversi. Per guardare solo la grafica, servi `web/` con un server statico e apri `index.html?preview=1`; questa modalità usa dati fittizi e non effettua il login nel gioco.
 
-Verifiche eseguite: compilazione degli 11 file Lua, 26 casi identity, 41 verifiche adapter, 32 verifiche sessioni server, 16 test provider/lifecycle client; tutte passate anche sul runtime Lua 5.4. Test Chromium su handshake, preview, slot precedenti, sospensioni, identity, cancellazione, richieste duplicate, recupero errori, trasparenza e mobile: passati. Framework, MySQL e native GTA sono simulati nei test Lua; nessuna prova FXServer o su database reale è stata eseguita qui.
+Verifiche eseguite: compilazione degli 11 file Lua, 26 casi identity, 41 verifiche adapter, 32 verifiche sessioni server e test provider/lifecycle client. Nella versione 0.1.1 la suite client include anche la transizione verso `void_loadscreen` e il fallback alle native. Test Chromium su handshake, preview, slot precedenti, sospensioni, identity, cancellazione, richieste duplicate, recupero errori, trasparenza e mobile: passati. Framework, MySQL e native GTA sono simulati nei test Lua; nessuna prova FXServer o su database reale è stata eseguita qui.
