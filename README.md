@@ -21,6 +21,6 @@ Loading screen standalone coordinata con il multicharacter: tema monocromatico, 
 
 ## VOID Survival · Inventory
 
-Patch grafica in stile DayZ per l'ox_inventory fornito: vicinanze, profilo sopravvissuto e inventario personale, logo VOID, metadati e operazioni originali.
+Nuova patch ispirata al riferimento LS Inventory fornito: personaggio a sinistra, sezioni personali al centro, griglia esterna a destra e barra rapida 1–10. Include anteprima locale, indicatori e le operazioni originali di ox_inventory.
 
-[Anteprima e installazione](inventory_patch/README.md) · [Config grafico](inventory_patch/ox_inventory/web/build/void-config.js) · [Scarica la patch](downloads/ox_inventory_void_dayz.zip)
+[Anteprima e installazione](inventory_patch/README.md) · [Config grafico](inventory_patch/ox_inventory/web/build/void-config.js) · [Scarica la patch LS](downloads/ox_inventory_void_ls.zip)

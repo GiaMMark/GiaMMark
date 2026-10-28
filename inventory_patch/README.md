@@ -1,34 +1,52 @@
-# VOID Survival · Inventario in stile DayZ
+# VOID Survival · Inventory LS
 
-Patch grafica per la versione **ox_inventory 2.45.0 dell'archivio fornito**. Le colonne vicinanze, sopravvissuto e inventario personale usano la UI originale, con logo VOID, toni militari e accenti rossi.
+Interfaccia ispirata allo screenshot LS Inventory fornito: personaggio a sinistra, icone laterali, indicatori di salute/armatura/peso, armi trasportate, sezioni personali strette al centro e inventario esterno grande a destra. In basso compare la barra rapida con gli slot reali da 1 a 10. Il logo e l’accento restano VOID Survival.
 
-![Anteprima browser con oggetti dimostrativi](ox_inventory/docs/preview.png)
+![Anteprima browser: disposizione LS con dati dimostrativi](ox_inventory/docs/preview.png)
 
-**[Scarica la patch ZIP](https://github.com/GiaMMark/GiaMMark/raw/refs/heads/void-characters/downloads/ox_inventory_void_dayz.zip)**
+**[Scarica la nuova patch LS](https://github.com/GiaMMark/GiaMMark/raw/refs/heads/void-characters/downloads/ox_inventory_void_ls.zip)**
 
-## Applicazione
+## Installazione
 
-1. Fai una copia della tua resource `ox_inventory` e fermala durante la manutenzione.
-2. Estrai lo ZIP e **sovrapponi** la cartella `ox_inventory` alla tua cartella esistente. È una patch: servono ancora i file originali della resource, i bundle e le immagini già installate.
-3. Mantieni `data/`, `modules/`, `web/images/` e le configurazioni del tuo server. Non rinominare la resource.
-4. Avvia di nuovo `ox_inventory` e riconnettiti per provare la UI. Non occorre nuovo SQL.
+1. Conserva una copia della tua resource `ox_inventory` funzionante e fermala durante la manutenzione.
+2. Estrai lo ZIP e sovrapponi la cartella `ox_inventory` alla tua cartella esistente. Copia anche la nuova cartella `void/`: contiene configurazione e bridge client per l’anteprima.
+3. Conserva i file originali `data/`, `modules/`, `web/images/`, i bundle e la configurazione del server. Questa è una patch per l’ox_inventory 2.45.0 del tuo archivio, non una resource completa indipendente.
+4. Riavvia ox_inventory e riconnettiti. Non occorre nuovo SQL. La patch sostituisce il precedente tema VOID/DayZ caricando gli stessi nomi di file del tema.
 
-Il pacchetto aggiunge il tema e aggiorna soltanto manifest e pagina HTML fra i file originali. Conserva le operazioni degli oggetti, gli export personalizzati, i trasferimenti e la persistenza gestita da ox_inventory. Non contiene modifiche a multicharacter o illenium.
+I bundle richiesti sono `index-7c4ea07a.js` e `index-9aba2ab3.css`; [base.json](base.json) ne riporta gli hash. Non sostituire la tua base con una release diversa per applicare questa patch.
 
-Personalizza nome, logo, accento e testi in [web/build/void-config.js](ox_inventory/web/build/void-config.js). La [guida della resource](ox_inventory/README-VOID.md) descrive compatibilità, immagini e collaudo.
+## Configurazione
 
-## Base richiesta e verifiche
+- **Grafica:** [web/build/void-config.js](ox_inventory/web/build/void-config.js), per logo, colore, testi, colonne, barra rapida e titoli delle sezioni.
+- **Anteprima e tasti:** [void/config.lua](ox_inventory/void/config.lua), per camera, distanza, inquadratura, rotazione, frequenza degli indicatori e tasti aggiuntivi.
 
-La pagina richiede i bundle originali `index-7c4ea07a.js` e `index-9aba2ab3.css`; gli hash della base sono in [base.json](base.json). Questa patch non li sostituisce e non include i dati personalizzati dell'archivio caricato. Non applicarla a una release con frontend diverso senza adattarla.
+Le sezioni DOTAZIONE, TASCHE e CARICO organizzano gli slot dello stesso inventario personale. Non assegnano nuove capacità o limiti di peso autonomi. Il limite rimane quello autorizzato da ox_inventory.
 
-Verificati 75 file originali invariati e nessun file originale rimosso. I due file originali modificati sono `fxmanifest.lua` e `web/build/index.html`. Il bundle JavaScript e il CSS originali restano identici.
+I pulsanti contenitore mostrano gli oggetti posseduti con `metadata.container` e usano il percorso originale di apertura di ox. L’inventario esterno a destra mostra il contenitore effettivamente aperto: terreno, stash, borsa, negozio o altro. Questa base apre un inventario esterno alla volta.
 
-La suite Chromium esercita il bundle React originale con callback server simulate: tooltip, Usa/Dai/Butta, quantità, drag-and-drop con mouse, aggiornamenti slot, negozi, contenitori vuoti, riaperture, chiusura e layout 1920/1366/1280. È stata eseguita anche dopo aver applicato la patch a una copia pulita dell'archivio ricevuto. Non è un collaudo FXServer, del database o delle autorizzazioni del tuo server.
+Le icone anatomiche senza oggetto sono riferimenti visivi, non un sistema di abbigliamento equipaggiabile. Le due schede armi derivano dagli oggetti WEAPON_ realmente presenti. La barra rapida usa gli slot nativi 1–10; il click richiama `useItem` originale. I tasti 1–5 restano quelli originali; i tasti 6–0 si abilitano opzionalmente con `Hotkeys.ExtraEnabled`, dopo aver controllato le associazioni del server.
 
-Per rieseguirla dalla cartella della patch con Python, Playwright e Chromium:
+## Anteprima del personaggio
+
+Il bridge aggiuntivo crea un clone locale del ped e una camera solo mentre ox_inventory è aperto. Non sposta il giocatore, non modifica il suo inventario e non nasconde il ped agli altri client. L’anteprima cede alle camere già attive di altri script e viene rimossa su chiusura, logout o stop della resource. In veicolo, da morto o durante altre camere può risultare non disponibile.
+
+Per mantenere leggibile il ped, `Preview.DisableNativeBlur` disabilita il blur globale della sola opzione di ox mentre l’addon è attivo; il valore precedente viene ripristinato all’arresto. Puoi disattivare `Preview.Enabled` se il tuo server possiede già una propria anteprima. Regola distanza, FOV e offset su GTA in base al modello e alla risoluzione.
+
+La schermata browser usa un segnaposto esplicitamente etichettato: non è una cattura di GTA. Il modello del personaggio, i vestiti e la camera reali richiedono il collaudo in FiveM.
+
+## Verifiche e limiti
+
+Il bundle React, il CSS compilato, il core server, gli oggetti e i moduli Lua originali restano invariati. Fra i file già presenti vengono aggiornati soltanto il manifest e la pagina HTML; il nuovo client è separato in `void/`. Non viene introdotta una seconda logica di autorizzazione o salvataggio degli oggetti.
+
+Passati 15 scenari Chromium sul bundle originale dopo installazione della patch: trascinamento reale fra inventari, quantità, Usa/Dai/Butta, tooltip, aggiornamenti, schede contenitore/armi, dieci slot rapidi, riaperture, shop e contenitori vuoti, trasparenza e layout. Passati 13 test Lua del bridge con native simulate: dati reali, controlli, cleanup camera/clone, rispetto di altre camere e tasti opzionali.
+
+Da questa cartella, per rieseguire i controlli di sviluppo:
 
 ```sh
 python3 tests/nui.test.py --resource /percorso/ox_inventory --chromium /usr/bin/chromium
+lua tests/native_bridge.test.lua
 ```
 
-Le icone schematiche della schermata dimostrativa appartengono alla fixture browser. Il tuo ZIP non conteneva `web/images/`: conserva le immagini che usi sul server. La patch non aggiunge oggetti dimostrativi al gioco e non esegue richieste a font o CDN esterni.
+Servono Python/Playwright/Chromium e Lua solo per i test. Prima dell’uso pubblico prova sul tuo FXServer camera, chiusura, stash, contenitori, peso limite, abiti e gli altri script del server. Le native, il database e le autorizzazioni server non vengono collaudati da un browser.
+
+L’archivio ricevuto non conteneva `web/images/`: conserva le icone che usi già. Gli oggetti schematici nell’immagine sono fixture del test e non vengono aggiunti al gioco. La licenza GPL originale è mantenuta.

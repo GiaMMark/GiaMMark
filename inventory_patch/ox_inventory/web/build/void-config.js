@@ -1,12 +1,21 @@
-// Public appearance settings only. Inventory behavior remains owned by ox_inventory.
+// Public appearance only. Native ox_inventory controls all items and transactions.
 window.VOID_INVENTORY = {
   brand: 'VOID SURVIVAL',
-  subtitle: 'EVERYTHING YOU CARRY. EVERYTHING YOU RISK.',
   logo: 'assets/void-logo.png',
-  accent: '#d5272f',
+  accent: '#db2835',
+  columns: 3,
+  quickSlots: 10,
+  // Visual sections of the SAME player inventory: not additional capacities.
+  // Align section starts to a row (1, 4, 7, 10, ... with 3 columns).
+  sections: [
+    { label: 'DOTAZIONE', start: 1 },
+    { label: 'TASCHE', start: 10 },
+    { label: 'CARICO', start: 13 }
+  ],
   labels: {
-    vicinity: 'VICINANZE', inventory: 'INVENTARIO', survivor: 'SOPRAVVISSUTO',
-    actions: 'AZIONI', quantity: 'QUANTITÀ', controls: 'TRASCINA / GESTISCI / SOPRAVVIVI',
-    hint: 'TASTO DESTRO · AZIONI OGGETTO', closeHint: 'ESC · CHIUDI'
+    vicinity: 'VICINANZE', inventory: 'DOTAZIONE PERSONALE',
+    quantity: 'QUANTITÀ', health: 'SALUTE', armor: 'ARMATURA', weight: 'PESO',
+    containers: 'CONTENITORI', closeHint: 'ESC · CHIUDI',
+    preview: 'Anteprima personaggio disponibile in gioco'
   }
 };
