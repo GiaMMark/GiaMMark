@@ -1,0 +1,14 @@
+Base: es_extended.zip fornito, ESX 1.16.3
+Valuta Void 1.0.0
+
+MODIFICATO es_extended/locale.lua
+MODIFICATO es_extended/server/bridge/inventory/oxinventory.lua
+MODIFICATO es_extended/server/classes/overrides/oxinventory.lua
+AGGIUNTO es_extended/server/modules/core/void_currency.lua
+MODIFICATO es_extended/server/modules/player/session/runtime/load.lua
+MODIFICATO es_extended/shared/config/main.lua
+
+ADD-ON ox_patch/void_currency.lua
+INSTALLER ox_patch/apply-ox-patch.py
+
+Gli altri file ESX sono identici byte per byte all'allegato.
