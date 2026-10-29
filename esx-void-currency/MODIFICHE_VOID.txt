@@ -12,3 +12,6 @@ ADD-ON ox_patch/void_currency.lua
 INSTALLER ox_patch/apply-ox-patch.py
 
 Gli altri file ESX sono identici byte per byte all'allegato.
+
+AVVIO WINDOWS ox_patch/INSTALLA_VOID_WINDOWS.cmd
+ISTRUZIONI WINDOWS ox_patch/LEGGIMI_WINDOWS.txt

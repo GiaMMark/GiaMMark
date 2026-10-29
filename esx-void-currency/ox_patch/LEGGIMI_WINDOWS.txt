@@ -1,0 +1,11 @@
+INSTALLAZIONE VOID SU WINDOWS
+
+1. Ferma il server FiveM.
+2. Premi Estrai tutto sullo ZIP. Non avviare il CMD direttamente dentro lo ZIP.
+3. Apri INSTALLA_VOID_WINDOWS.cmd con doppio clic.
+4. Quando richiesto incolla soltanto il percorso reale della cartella ox_inventory. Non aggiungere il simbolo > o comandi. Puoi anche trascinare la cartella ox_inventory sopra il file CMD.
+5. Attendi Patch Void installata oppure Patch Void gia installata.
+
+I tre file CMD, apply-ox-patch.py e void_currency.lua devono restare insieme. Il CMD trova automaticamente Python tramite py -3 e richiama lo script corretto dalla propria cartella.
+
+Questo pacchetto installa solo l'adattatore ox_inventory. Devi aver installato anche es_extended modificato del pacchetto ESX Void completo. La modifica usa backup del manifest e controlli prima della scrittura.

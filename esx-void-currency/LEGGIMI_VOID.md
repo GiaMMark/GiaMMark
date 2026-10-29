@@ -18,7 +18,13 @@ per tornare ai due saldi originali serve il backup.
 2. Applica l'adattatore alla tua cartella **esistente** `ox_inventory`. Il pacchetto
    non contiene una copia sostitutiva di ox_inventory e non riscrive `data/items.lua`.
 
-   Con Python 3.10 o successivo, dalla cartella estratta del pacchetto:
+   **Su Windows:** estrai tutto lo ZIP, apri la cartella `ox_patch` e fai doppio
+   clic su **`INSTALLA_VOID_WINDOWS.cmd`**. Incolla il percorso della cartella
+   ox_inventory quando richiesto, senza il simbolo `>` del prompt. Non serve
+   aprire la console interattiva Python. I file della cartella ox_patch devono
+   restare insieme.
+
+   In alternativa, con Python 3.10 o successivo, dalla cartella estratta del pacchetto:
 
    ```sh
    python3 ox_patch/apply-ox-patch.py /percorso/resources/ox_inventory
