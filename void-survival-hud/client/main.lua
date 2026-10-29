@@ -5,8 +5,8 @@ local hunger, thirst = false, false
 local trip = { vehicle = 0, distance = 0.0, coords = nil, at = nil }
 
 local baseSettings = {
-    version = 2, accent = '#a78bfa', secondary = '#67e8f9', opacity = 65,
-    scale = 100, layout = 'row', showLabels = false, showBackground = false, unit = 'kmh',
+    version = 3, accent = '#ff2028', secondary = '#f2f2f2', opacity = 90,
+    scale = 100, layout = 'row', showLabels = false, showBackground = true, unit = 'kmh',
     widgets = { vitals = true, vehicle = true, voice = true },
     positions = {
         vitals = { x = 20, y = 90 }, vehicle = { x = 78, y = 90 },
@@ -34,13 +34,21 @@ end
 local function sanitize(input, fallback)
     local result = copy(fallback)
     if type(input) ~= 'table' then return result end
-    result.version = 2
-    for _, key in ipairs({ 'accent', 'secondary' }) do
-        if type(input[key]) == 'string' and input[key]:match('^#%x%x%x%x%x%x$') then
-            result[key] = input[key]:lower()
+    local legacyTheme = type(input.version) ~= 'number' or input.version ~= 3
+    local oldPalette = type(input.accent) == 'string' and type(input.secondary) == 'string'
+        and input.accent:lower() == '#a78bfa' and input.secondary:lower() == '#67e8f9'
+    result.version = 3
+    -- Aggiorna soltanto la vecchia palette standard: conserva i colori personalizzati.
+    if not (legacyTheme and oldPalette) then
+        for _, key in ipairs({ 'accent', 'secondary' }) do
+            if type(input[key]) == 'string' and input[key]:match('^#%x%x%x%x%x%x$') then
+                result[key] = input[key]:lower()
+            end
         end
     end
-    result.opacity = clamp(input.opacity, 35, 100, result.opacity)
+    if not (legacyTheme and input.opacity == 65) then
+        result.opacity = clamp(input.opacity, 35, 100, result.opacity)
+    end
     result.scale = clamp(input.scale, 70, 130, result.scale)
     if input.layout == 'row' or input.layout == 'compact' then
         result.layout = input.layout
@@ -50,13 +58,16 @@ local function sanitize(input, fallback)
     if input.unit == 'kmh' or input.unit == 'mph' then result.unit = input.unit end
     -- La prima versione aveva etichette e riquadri: passa alla riga pulita.
     -- Mantiene colori, posizione e moduli salvati; dalla v2 le etichette sono una scelta.
-    local legacy = input.version == 1 or (input.version ~= 2 and input.layout == 'cards')
+    local legacy = input.version == 1
+        or (input.version ~= 2 and input.version ~= 3 and input.layout == 'cards')
     if legacy then
         result.showLabels = false
     elseif type(input.showLabels) == 'boolean' then
         result.showLabels = input.showLabels
     end
-    if type(input.showBackground) == 'boolean' then
+    if legacyTheme then
+        result.showBackground = true
+    elseif type(input.showBackground) == 'boolean' then
         result.showBackground = input.showBackground
     end
     for _, widget in ipairs({ 'vitals', 'vehicle', 'voice' }) do

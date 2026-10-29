@@ -1,6 +1,6 @@
 export const DEFAULTS = Object.freeze({
-  version: 2, accent: '#a78bfa', secondary: '#67e8f9', opacity: 65,
-  scale: 100, layout: 'row', showLabels: false, showBackground: false, unit: 'kmh',
+  version: 3, accent: '#ff2028', secondary: '#f2f2f2', opacity: 90,
+  scale: 100, layout: 'row', showLabels: false, showBackground: true, unit: 'kmh',
   widgets: { vitals: true, vehicle: true, voice: true },
   positions: { vitals: { x: 20, y: 90 }, vehicle: { x: 78, y: 90 }, voice: { x: 62, y: 90 } },
 });
@@ -14,20 +14,28 @@ const color = (value, fallback) => typeof value === 'string' && /^#[0-9a-f]{6}$/
 
 // Use only known cosmetic fields; saved or incoming JSON never becomes CSS/HTML directly.
 export function normalizeSettings(value, defaults = DEFAULTS) {
-  const source = value && typeof value === 'object' ? value : {};
   const base = defaults === DEFAULTS ? clone(DEFAULTS) : normalizeSettings(defaults);
-  base.version = 2;
-  base.accent = color(source.accent, base.accent);
-  base.secondary = color(source.secondary, base.secondary);
-  base.opacity = number(source.opacity, base.opacity, 35, 100);
+  if (!value || typeof value !== 'object') return base;
+  const source = value;
+  const legacyTheme = typeof source.version !== 'number' || source.version !== 3;
+  const oldPalette = typeof source.accent === 'string' && typeof source.secondary === 'string'
+    && source.accent.toLowerCase() === '#a78bfa' && source.secondary.toLowerCase() === '#67e8f9';
+  base.version = 3;
+  // Refresh the former stock theme while keeping each player's custom palette.
+  if (!(legacyTheme && oldPalette)) {
+    base.accent = color(source.accent, base.accent);
+    base.secondary = color(source.secondary, base.secondary);
+  }
+  if (!(legacyTheme && source.opacity === 65)) base.opacity = number(source.opacity, base.opacity, 35, 100);
   base.scale = number(source.scale, base.scale, 70, 130);
   if (['row', 'compact'].includes(source.layout)) base.layout = source.layout;
   else if (source.layout === 'cards') base.layout = 'row';
   if (['kmh', 'mph'].includes(source.unit)) base.unit = source.unit;
-  const legacy = source.version === 1 || (source.version !== 2 && source.layout === 'cards');
+  const legacy = source.version === 1 || (![2, 3].includes(source.version) && source.layout === 'cards');
   if (legacy) base.showLabels = false;
   else if (typeof source.showLabels === 'boolean') base.showLabels = source.showLabels;
-  if (typeof source.showBackground === 'boolean') base.showBackground = source.showBackground;
+  if (legacyTheme) base.showBackground = true;
+  else if (typeof source.showBackground === 'boolean') base.showBackground = source.showBackground;
   for (const id of Object.keys(base.widgets)) {
     if (typeof source.widgets?.[id] === 'boolean') base.widgets[id] = source.widgets[id];
     const position = source.positions?.[id];

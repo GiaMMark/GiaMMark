@@ -1,10 +1,10 @@
 # Void Survival HUD — FiveM ESX
 
-HUD a riga in nero, viola e ciano: vita, armatura, fame, sete, resistenza/ossigeno,
+HUD a riga con sfondi neri, dettagli rossi e testo bianco come il logo VOID: vita, armatura, fame, sete, resistenza/ossigeno,
 stress JG, voce e strumenti veicolo. Tutti i player possono cambiare posizione,
 dimensione, trasparenza, colori, larghezza del layout e visibilità dei gruppi senza permessi staff.
 Nessun titolo sopra gli indicatori; le etichette sono nascoste inizialmente.
-Gli indicatori partono senza sfondo; puoi riattivare i pannelli dall'editor.
+I pannelli neri sono attivi inizialmente; puoi regolarne l'opacità o nasconderli dall'editor.
 La minimappa richiede il possesso dell'item `mappa`.
 
 ## Installazione
@@ -36,20 +36,20 @@ Le eventuali dipendenze del tuo ESX e del tuo addon JG restano quelle del tuo se
 
 Ferma `void-survival-hud`, sostituisci la cartella con quella del nuovo ZIP e avvia
 `ensure void-survival-hud`. Non lasciare una seconda copia della risorsa avviata.
-La pagina di gioco ora forza lo sfondo trasparente e non contiene la scena
-di anteprima. La preview è separata in `preview.html`, attivabile solo esplicitamente.
-La versione 1.1 usa una riga orizzontale con layout normale o compatto. Le preferenze
-precedenti vengono lette: colori, posizione, dimensione e moduli restano salvati;
-i vecchi riquadri diventano una riga e le etichette iniziali vengono nascoste.
-Per applicare le nuove posizioni iniziali apri `/hud`, premi **Ripristina tutto**
-e poi **Salva HUD**.
+La versione 1.3 applica lo stile del logo a HUD ed editor: sfondi neri,
+dettagli rossi, testo bianco e bordi sottili. I pannelli partono attivi al 90%.
+La pagina NUI resta trasparente fuori dai moduli; il layout rimane orizzontale.
 
-La versione 1.2 mostra la riga senza sfondo anche con preferenze precedenti.
-L'opzione **Sfondo indicatori** riattiva i pannelli usando l'opacità già salvata.
-La versione 1.2.1 usa il logo VOID SURVIVAL in PNG trasparente nell'editor.
-Il file `html/assets/void-logo.png` non ha riquadro, bordo o ombra propri; puoi
-sostituirlo mantenendo lo stesso nome. La riga HUD e il controllo dell'item mappa
-restano invariati.
+Le preferenze precedenti mantengono posizioni, dimensioni, unità e moduli.
+La vecchia palette standard viola/ciano viene aggiornata a rosso/bianco;
+i colori personalizzati vengono conservati. Durante l'aggiornamento si attivano
+i pannelli neri; dopo puoi disattivarli da **Sfondo indicatori** e salvare.
+La vecchia opacità standard 65% diventa 90%; un'opacità personalizzata resta salvata.
+Se vuoi riapplicare i colori del logo, seleziona **Void** nella sezione Colori.
+
+Il logo trasparente dell'editor è `html/assets/void-logo.png`: puoi sostituirlo
+mantenendo lo stesso nome. Per una nuova disposizione iniziale usa **Ripristina
+tutto** e **Salva HUD**; questo ripristina anche le altre preferenze personali.
 
 ## Minimappa e item mappa
 
@@ -171,7 +171,7 @@ non si collega a ESX e salva le preferenze nel browser, separate da quelle in gi
 Non aprire `preview.html` direttamente come file: gli script sono moduli JavaScript.
 I file NUI sono già pronti, senza compilazione o download da CDN.
 
-I sette test di normalizzazione, migrazione e posizionamento si eseguono con
+I dieci test di normalizzazione, migrazione e posizionamento si eseguono con
 `node tests/settings.test.mjs` (Node 18 o successivo, solo per lo sviluppo).
 
 La preview browser serve a controllare interfaccia ed editor. La verifica dei

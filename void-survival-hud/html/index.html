@@ -25,7 +25,7 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   </svg>
 
-  <main id="hud" class="no-labels no-background" aria-label="HUD sopravvivenza" hidden>
+  <main id="hud" class="no-labels" aria-label="HUD sopravvivenza" hidden>
     <section id="vitals" class="widget vitals" data-widget="vitals" aria-label="Indicatori del personaggio">
       <div class="stats">
         <div class="stat" data-stat="health"><svg><use href="#i-heart"/></svg><span class="stat-value">--</span><span class="stat-label">VITA</span><div class="stat-track"><i></i></div></div>
@@ -62,11 +62,11 @@
         <div class="field-header">Stile</div>
         <div class="layout-options" role="group" aria-label="Stile interfaccia"><button class="layout-option" data-layout="row" aria-pressed="true"><span class="layout-illustration cards-illustration"><i></i><i></i><i></i><i></i></span><span>Standard</span><svg><use href="#i-check"/></svg></button><button class="layout-option" data-layout="compact" aria-pressed="false"><span class="layout-illustration compact-illustration"><i></i><i></i><i></i><i></i></span><span>Compatto</span><svg><use href="#i-check"/></svg></button></div>
         <div class="field-header">Colori</div>
-        <div class="palette-row"><button class="palette active" data-palette="void" aria-label="Palette Void: viola e ciano" aria-pressed="true"><i style="background:#a78bfa"></i><i style="background:#67e8f9"></i><span>Void</span></button><button class="palette" data-palette="toxic" aria-label="Palette Toxic: verde e ambra" aria-pressed="false"><i style="background:#bef264"></i><i style="background:#fbbf24"></i><span>Verde</span></button><button class="palette" data-palette="ember" aria-label="Palette Ember: arancio e rosa" aria-pressed="false"><i style="background:#fb923c"></i><i style="background:#fda4af"></i><span>Arancio</span></button></div>
-        <div class="color-row"><label><input id="accent" type="color" value="#a78bfa"><span>Primario</span><code id="accent-value">#A78BFA</code></label><label><input id="secondary" type="color" value="#67e8f9"><span>Secondario</span><code id="secondary-value">#67E8F9</code></label></div>
+        <div class="palette-row"><button class="palette active" data-palette="void" aria-label="Palette Void: rosso e bianco" aria-pressed="true"><i style="background:#ff2028"></i><i style="background:#f2f2f2"></i><span>Void</span></button><button class="palette" data-palette="toxic" aria-label="Palette Toxic: verde e ambra" aria-pressed="false"><i style="background:#bef264"></i><i style="background:#fbbf24"></i><span>Verde</span></button><button class="palette" data-palette="ember" aria-label="Palette Ember: arancio e rosa" aria-pressed="false"><i style="background:#fb923c"></i><i style="background:#fda4af"></i><span>Arancio</span></button></div>
+        <div class="color-row"><label><input id="accent" type="color" value="#ff2028"><span>Primario</span><code id="accent-value">#FF2028</code></label><label><input id="secondary" type="color" value="#f2f2f2"><span>Secondario</span><code id="secondary-value">#F2F2F2</code></label></div>
         <div class="range-field"><label for="scale">Dimensione <output id="scale-value">100%</output></label><input id="scale" type="range" min="70" max="130" step="1" value="100"></div>
-        <div class="toggle-field"><label for="show-background">Sfondo indicatori<span>Riquadro scuro dietro i moduli</span></label><input id="show-background" class="switch" type="checkbox"></div>
-        <div class="range-field"><label for="opacity">Opacità pannelli <output id="opacity-value">65%</output></label><input id="opacity" type="range" min="35" max="100" step="1" value="65" disabled></div>
+        <div class="toggle-field"><label for="show-background">Sfondo indicatori<span>Pannelli neri con dettagli Void</span></label><input id="show-background" class="switch" type="checkbox" checked></div>
+        <div class="range-field"><label for="opacity">Opacità pannelli <output id="opacity-value">90%</output></label><input id="opacity" type="range" min="35" max="100" step="1" value="90"></div>
         <div class="toggle-field"><label for="show-labels">Etichette indicatori<span>I nomi sotto ogni valore</span></label><input id="show-labels" class="switch" type="checkbox"></div>
         <div class="unit-field"><label for="unit">Unità velocità</label><select id="unit"><option value="kmh">Chilometri / h</option><option value="mph">Miglia / h</option></select></div>
         <div class="field-header modules-header">Moduli</div>

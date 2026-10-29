@@ -17,7 +17,7 @@ let data = { visible: false, vehicle: { active: false } };
 let previewVehicle = true;
 const names = { vitals: 'Indicatori', vehicle: 'Veicolo', voice: 'Voce' };
 const palettes = {
-  void: ['#a78bfa', '#67e8f9'], toxic: ['#bef264', '#fbbf24'], ember: ['#fb923c', '#fda4af'],
+  void: ['#ff2028', '#f2f2f2'], toxic: ['#bef264', '#fbbf24'], ember: ['#fb923c', '#fda4af'],
 };
 
 async function post(endpoint, payload = {}) {
@@ -56,7 +56,10 @@ function applySettings() {
   const root = document.documentElement;
   root.style.setProperty('--accent', settings.accent);
   root.style.setProperty('--secondary', settings.secondary);
-  root.style.setProperty('--panel', `rgba(13, 16, 22, ${settings.opacity / 100})`);
+  const rgb = [1, 3, 5].map((offset) => parseInt(settings.accent.slice(offset, offset + 2), 16)).join(', ');
+  root.style.setProperty('--accent-soft', `rgba(${rgb}, .12)`);
+  root.style.setProperty('--accent-edge', `rgba(${rgb}, .38)`);
+  root.style.setProperty('--panel', `rgba(0, 0, 0, ${settings.opacity / 100})`);
   root.style.setProperty('--hud-scale', settings.scale / 100);
   $('#hud').classList.toggle('compact', settings.layout === 'compact');
   $('#hud').classList.toggle('no-labels', !settings.showLabels);
