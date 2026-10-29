@@ -4,6 +4,8 @@ HUD a riga in nero, viola e ciano: vita, armatura, fame, sete, resistenza/ossige
 stress JG, voce e strumenti veicolo. Tutti i player possono cambiare posizione,
 dimensione, trasparenza, colori, larghezza del layout e visibilità dei gruppi senza permessi staff.
 Nessun titolo sopra gli indicatori; le etichette sono nascoste inizialmente.
+Gli indicatori partono senza sfondo; puoi riattivare i pannelli dall'editor.
+La minimappa richiede il possesso dell'item `mappa`.
 
 ## Installazione
 
@@ -30,7 +32,7 @@ Nessun titolo sopra gli indicatori; le etichette sono nascoste inizialmente.
 Non richiede SQL, npm, librerie NUI esterne, nuovi eventi server o credenziali.
 Le eventuali dipendenze del tuo ESX e del tuo addon JG restano quelle del tuo server.
 
-## Aggiornamento dalla prima versione
+## Aggiornamento
 
 Ferma `void-survival-hud`, sostituisci la cartella con quella del nuovo ZIP e avvia
 `ensure void-survival-hud`. Non lasciare una seconda copia della risorsa avviata.
@@ -41,6 +43,41 @@ precedenti vengono lette: colori, posizione, dimensione e moduli restano salvati
 i vecchi riquadri diventano una riga e le etichette iniziali vengono nascoste.
 Per applicare le nuove posizioni iniziali apri `/hud`, premi **Ripristina tutto**
 e poi **Salva HUD**.
+
+La versione 1.2 mostra la riga senza sfondo anche con preferenze precedenti.
+L'opzione **Sfondo indicatori** riattiva i pannelli usando l'opacità già salvata.
+Il logo V non ha sfondo o bordo proprio.
+
+## Minimappa e item mappa
+
+La minimappa appare solo quando il personaggio ha almeno un item chiamato
+`mappa` nell'inventario, sia a piedi sia in auto. Si nasconde se il player perde
+l'ultimo esemplare, esce dal personaggio o l'inventario non è ancora disponibile.
+La verifica è automatica: non devi usare o consumare l'item.
+
+Il nome è quello interno dell'item, modificabile in `config.lua`:
+
+```lua
+Config.Minimap = {
+    Enabled = true,
+    Item = 'mappa',
+    Inventory = 'auto',
+    CheckInterval = 500
+}
+```
+
+`auto` usa `ox_inventory` se presente; altrimenti legge l'inventario ESX.
+Puoi scegliere esplicitamente `esx` oppure `ox_inventory`. Se ox è presente ma
+in arresto o non pronto, in modalità auto il radar resta nascosto fino al suo
+riavvio per evitare di usare una copia ESX non aggiornata dell'inventario.
+L'item deve già essere registrato nel sistema inventario del server; l'HUD non
+crea o assegna item. Non serve modificare il database per l'HUD.
+
+Lascia il controllo della minimappa a questa risorsa: disattiva eventuali
+altri HUD/script che la forzano visibile. `Enabled = false` disabilita il
+controllo del radar da parte dell'HUD. La mappa nel menu pausa è separata e
+non viene bloccata. Alla chiusura della risorsa, con personaggio caricato, il
+radar torna allo stato precedente; dopo il logout resta nascosto.
 
 ## Editor personale
 
@@ -102,8 +139,8 @@ metodo `readFuel` di `client/main.lua`.
   Se mancano i dati vengono mostrate come non disponibili.
 - La voce usa `NetworkIsPlayerTalking`; se esiste il statebag `proximity.distance`
   (per esempio pma-voice), viene mostrata anche la distanza. Nessuna dipendenza voce.
-- La minimappa non viene spostata o nascosta. Eventuali HUD ESX/terzi vanno
-  disattivati nella rispettiva configurazione.
+- La minimappa non viene spostata. La visibilità dipende da `Config.Minimap`
+  e dall'inventario; eventuali HUD terzi che controllano il radar vanno configurati.
 - In pausa l'HUD si nasconde (`HideOnPause`). Nessun parametro influenza salute,
   bisogni, motore, carburante o altri valori di gioco: tutti sono letti soltanto.
 
@@ -119,6 +156,9 @@ metodo `readFuel` di `client/main.lua`.
    cambia km/h/mph dall'editor. Esci dal veicolo: il gruppo deve scomparire.
 6. Prova Esc, pausa, logout e `restart void-survival-hud`: il cursore non deve
    rimanere bloccato e la HUD non deve apparire nella selezione personaggio.
+7. Senza `mappa`, verifica radar nascosto a piedi e in auto. Aggiungi l'item:
+   deve apparire; rimuovi l'ultimo esemplare: deve scomparire. Ripeti dopo un
+   ricollegamento e il riavvio della risorsa inventario.
 
 ## Anteprima fuori da FiveM
 
@@ -128,7 +168,7 @@ non si collega a ESX e salva le preferenze nel browser, separate da quelle in gi
 Non aprire `preview.html` direttamente come file: gli script sono moduli JavaScript.
 I file NUI sono già pronti, senza compilazione o download da CDN.
 
-I cinque test di normalizzazione, migrazione e posizionamento si eseguono con
+I sette test di normalizzazione, migrazione e posizionamento si eseguono con
 `node tests/settings.test.mjs` (Node 18 o successivo, solo per lo sviluppo).
 
 La preview browser serve a controllare interfaccia ed editor. La verifica dei

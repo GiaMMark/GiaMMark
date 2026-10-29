@@ -6,7 +6,7 @@ local trip = { vehicle = 0, distance = 0.0, coords = nil, at = nil }
 
 local baseSettings = {
     version = 2, accent = '#a78bfa', secondary = '#67e8f9', opacity = 65,
-    scale = 100, layout = 'row', showLabels = false, unit = 'kmh',
+    scale = 100, layout = 'row', showLabels = false, showBackground = false, unit = 'kmh',
     widgets = { vitals = true, vehicle = true, voice = true },
     positions = {
         vitals = { x = 20, y = 90 }, vehicle = { x = 78, y = 90 },
@@ -55,6 +55,9 @@ local function sanitize(input, fallback)
         result.showLabels = false
     elseif type(input.showLabels) == 'boolean' then
         result.showLabels = input.showLabels
+    end
+    if type(input.showBackground) == 'boolean' then
+        result.showBackground = input.showBackground
     end
     for _, widget in ipairs({ 'vitals', 'vehicle', 'voice' }) do
         if type(input.widgets) == 'table' and type(input.widgets[widget]) == 'boolean' then

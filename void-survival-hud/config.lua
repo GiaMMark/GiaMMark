@@ -9,6 +9,17 @@ Config.StatusResource = 'esx_status'
 Config.HideOnPause = true
 Config.HideWhileDead = false
 
+-- La minimappa è disponibile soltanto se il personaggio possiede questo item.
+-- auto: usa ox_inventory se installato; altrimenti legge l'inventario ESX.
+-- Con ox_inventory fermo/in avvio resta nascosta per evitare dati ESX obsoleti.
+-- Imposta Inventory = 'esx' per forzare l'inventario ESX standard.
+Config.Minimap = {
+    Enabled = true,
+    Item = 'mappa',
+    Inventory = 'auto', -- auto, esx, ox_inventory
+    CheckInterval = 500 -- ms; gli eventi inventario anticipano il controllo.
+}
+
 Config.UpdateInterval = 250
 Config.VehicleUpdateInterval = 100
 Config.StatusInterval = 1000
@@ -30,6 +41,7 @@ Config.DefaultSettings = {
     scale = 100,
     layout = 'row',
     showLabels = false,
+    showBackground = false,
     unit = 'kmh',
     widgets = { vitals = true, vehicle = true, voice = true },
     positions = {

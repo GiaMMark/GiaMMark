@@ -70,3 +70,23 @@ test('version 2 can enable labels and select compact row after migration', () =>
   assert.equal(result.showLabels, true);
   assert.equal(normalizeSettings({ layout: 'cards', showLabels: true }).showLabels, false);
 });
+
+test('saved settings without background field inherit transparent modules and keep opacity', () => {
+  const result = normalizeSettings({ version: 2, opacity: 82, accent: '#123456' });
+  assert.equal(result.showBackground, false);
+  assert.equal(result.opacity, 82);
+  assert.equal(result.accent, '#123456');
+});
+
+test('background preference accepts only booleans and persists both choices', () => {
+  assert.equal(normalizeSettings({ showBackground: 'true' }).showBackground, false);
+  assert.equal(normalizeSettings({ showBackground: 1 }).showBackground, false);
+  const enabled = normalizeSettings(JSON.parse(JSON.stringify({ showBackground: true, opacity: 74 })));
+  assert.equal(enabled.showBackground, true);
+  assert.equal(enabled.opacity, 74);
+  const disabled = normalizeSettings(JSON.parse(JSON.stringify({ ...enabled, showBackground: false })));
+  assert.equal(disabled.showBackground, false);
+  assert.equal(disabled.opacity, 74);
+  const customDefaults = normalizeSettings({ showBackground: true });
+  assert.equal(normalizeSettings({ showBackground: 'false' }, customDefaults).showBackground, true);
+});

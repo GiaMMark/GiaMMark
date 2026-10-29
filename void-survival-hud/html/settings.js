@@ -1,6 +1,6 @@
 export const DEFAULTS = Object.freeze({
   version: 2, accent: '#a78bfa', secondary: '#67e8f9', opacity: 65,
-  scale: 100, layout: 'row', showLabels: false, unit: 'kmh',
+  scale: 100, layout: 'row', showLabels: false, showBackground: false, unit: 'kmh',
   widgets: { vitals: true, vehicle: true, voice: true },
   positions: { vitals: { x: 20, y: 90 }, vehicle: { x: 78, y: 90 }, voice: { x: 62, y: 90 } },
 });
@@ -27,6 +27,7 @@ export function normalizeSettings(value, defaults = DEFAULTS) {
   const legacy = source.version === 1 || (source.version !== 2 && source.layout === 'cards');
   if (legacy) base.showLabels = false;
   else if (typeof source.showLabels === 'boolean') base.showLabels = source.showLabels;
+  if (typeof source.showBackground === 'boolean') base.showBackground = source.showBackground;
   for (const id of Object.keys(base.widgets)) {
     if (typeof source.widgets?.[id] === 'boolean') base.widgets[id] = source.widgets[id];
     const position = source.positions?.[id];

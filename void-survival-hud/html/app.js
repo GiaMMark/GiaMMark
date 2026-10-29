@@ -60,6 +60,7 @@ function applySettings() {
   root.style.setProperty('--hud-scale', settings.scale / 100);
   $('#hud').classList.toggle('compact', settings.layout === 'compact');
   $('#hud').classList.toggle('no-labels', !settings.showLabels);
+  $('#hud').classList.toggle('no-background', !settings.showBackground);
   render();
   fitWidgets();
 }
@@ -86,6 +87,8 @@ function syncControls() {
   $('#scale-value').value = `${Math.round(settings.scale)}%`;
   $('#opacity-value').value = `${Math.round(settings.opacity)}%`;
   $('#show-labels').checked = settings.showLabels;
+  $('#show-background').checked = settings.showBackground;
+  $('#opacity').disabled = !settings.showBackground;
   $$('[data-toggle]').forEach((input) => { input.checked = settings.widgets[input.dataset.toggle]; });
   $$('[data-layout]').forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.layout === settings.layout)));
   $$('[data-palette]').forEach((button) => {
@@ -238,6 +241,11 @@ for (const key of ['accent', 'secondary', 'scale', 'opacity', 'unit']) {
 $('#show-labels').addEventListener('change', (event) => {
   settings.showLabels = event.target.checked;
   applySettings();
+});
+$('#show-background').addEventListener('change', (event) => {
+  settings.showBackground = event.target.checked;
+  applySettings();
+  syncControls();
 });
 $$('[data-layout]').forEach((button) => button.addEventListener('click', () => {
   settings.layout = button.dataset.layout;
