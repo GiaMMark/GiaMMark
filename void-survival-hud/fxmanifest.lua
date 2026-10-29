@@ -3,7 +3,7 @@ game 'gta5'
 
 author 'Void Survival HUD'
 description 'HUD survival ESX con editor personale, stress JG e strumenti veicolo'
-version '1.2.0'
+version '1.2.1'
 
 ui_page 'html/index.html'
 
@@ -17,7 +17,8 @@ files {
     'html/index.html',
     'html/styles.css',
     'html/app.js',
-    'html/settings.js'
+    'html/settings.js',
+    'html/assets/void-logo.png'
 }
 
 dependency 'es_extended'

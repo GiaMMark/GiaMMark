@@ -168,7 +168,7 @@ input { accent-color: var(--accent); }
 }
 .editor-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--line); }
 .editor-brand { display: flex; align-items: center; gap: 9px; }
-.brand-mark { display: flex; align-items: center; justify-content: center; width: 24px; height: 25px; color: var(--accent); font: bold 22px/1 Arial, sans-serif; background: transparent; border: 0; box-shadow: none; }
+.brand-logo { display: block; width: 64px; height: 64px; object-fit: contain; flex-shrink: 0; background: transparent; border: 0; box-shadow: none; }
 .editor-brand strong { font-size: 13px; letter-spacing: 1px; }
 .editor-brand strong span { color: #969baa; font-weight: 400; }
 .icon-button { width: 27px; height: 27px; color: #a8adbb; font-size: 22px; background: transparent; border-radius: 3px; }

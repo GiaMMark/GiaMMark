@@ -46,7 +46,10 @@ e poi **Salva HUD**.
 
 La versione 1.2 mostra la riga senza sfondo anche con preferenze precedenti.
 L'opzione **Sfondo indicatori** riattiva i pannelli usando l'opacità già salvata.
-Il logo V non ha sfondo o bordo proprio.
+La versione 1.2.1 usa il logo VOID SURVIVAL in PNG trasparente nell'editor.
+Il file `html/assets/void-logo.png` non ha riquadro, bordo o ombra propri; puoi
+sostituirlo mantenendo lo stesso nome. La riga HUD e il controllo dell'item mappa
+restano invariati.
 
 ## Minimappa e item mappa
 
