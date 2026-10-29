@@ -1,8 +1,8 @@
 export const DEFAULTS = Object.freeze({
-  version: 1, accent: '#a78bfa', secondary: '#67e8f9', opacity: 85,
-  scale: 100, layout: 'cards', showLabels: true, unit: 'kmh',
+  version: 2, accent: '#a78bfa', secondary: '#67e8f9', opacity: 65,
+  scale: 100, layout: 'row', showLabels: false, unit: 'kmh',
   widgets: { vitals: true, vehicle: true, voice: true },
-  positions: { vitals: { x: 20, y: 86 }, vehicle: { x: 78, y: 72 }, voice: { x: 20, y: 80 } },
+  positions: { vitals: { x: 20, y: 90 }, vehicle: { x: 78, y: 90 }, voice: { x: 62, y: 90 } },
 });
 
 export const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -16,14 +16,17 @@ const color = (value, fallback) => typeof value === 'string' && /^#[0-9a-f]{6}$/
 export function normalizeSettings(value, defaults = DEFAULTS) {
   const source = value && typeof value === 'object' ? value : {};
   const base = defaults === DEFAULTS ? clone(DEFAULTS) : normalizeSettings(defaults);
-  base.version = 1;
+  base.version = 2;
   base.accent = color(source.accent, base.accent);
   base.secondary = color(source.secondary, base.secondary);
   base.opacity = number(source.opacity, base.opacity, 35, 100);
   base.scale = number(source.scale, base.scale, 70, 130);
-  if (['cards', 'compact'].includes(source.layout)) base.layout = source.layout;
+  if (['row', 'compact'].includes(source.layout)) base.layout = source.layout;
+  else if (source.layout === 'cards') base.layout = 'row';
   if (['kmh', 'mph'].includes(source.unit)) base.unit = source.unit;
-  if (typeof source.showLabels === 'boolean') base.showLabels = source.showLabels;
+  const legacy = source.version === 1 || (source.version !== 2 && source.layout === 'cards');
+  if (legacy) base.showLabels = false;
+  else if (typeof source.showLabels === 'boolean') base.showLabels = source.showLabels;
   for (const id of Object.keys(base.widgets)) {
     if (typeof source.widgets?.[id] === 'boolean') base.widgets[id] = source.widgets[id];
     const position = source.positions?.[id];

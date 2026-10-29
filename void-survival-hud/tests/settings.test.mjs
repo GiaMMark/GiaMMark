@@ -13,11 +13,11 @@ test('malformed stored settings cannot inject colors or escape viewport constrai
   assert.equal(result.secondary, '#00ffaa');
   assert.equal(result.scale, 130);
   assert.equal(result.opacity, 35);
-  assert.equal(result.layout, 'cards');
+  assert.equal(result.layout, 'row');
   assert.equal(result.unit, 'kmh');
-  assert.equal(result.showLabels, true);
+  assert.equal(result.showLabels, false);
   assert.deepEqual(result.positions.vitals, { x: 20, y: 0 });
-  assert.deepEqual(result.positions.vehicle, { x: 100, y: 72 });
+  assert.deepEqual(result.positions.vehicle, { x: 100, y: 90 });
   assert.equal(result.widgets.voice, false);
   assert.equal(result.widgets.vitals, true);
   assert.equal(Object.hasOwn(result, 'injected'), false);
@@ -30,10 +30,10 @@ test('server defaults are merged without sharing mutable widget or position obje
   assert.equal(result.scale, 80);
   assert.equal(result.opacity, 60);
   assert.equal(result.widgets.voice, false);
-  assert.deepEqual(result.positions.vitals, { x: 10, y: 86 });
+  assert.deepEqual(result.positions.vitals, { x: 10, y: 90 });
   result.positions.voice.x = 90;
-  assert.equal(defaults.positions.voice.x, 20);
-  assert.equal(DEFAULTS.positions.voice.x, 20);
+  assert.equal(defaults.positions.voice.x, 62);
+  assert.equal(DEFAULTS.positions.voice.x, 62);
 });
 
 test('loaded positions and scaled widgets stay inside the current resolution', () => {
@@ -42,4 +42,31 @@ test('loaded positions and scaled widgets stay inside the current resolution', (
   assert.ok(p.y / 100 * 720 + 110 * 1.3 <= 712 + 1e-8);
   const negative = fitPosition({ x: -30, y: -10 }, 254, 195, 1920, 1080);
   assert.ok(negative.x > 0 && negative.y > 0);
+});
+
+
+test('version 1 preferences migrate to a row without losing personal placement and colors', () => {
+  const result = normalizeSettings({
+    version: 1, layout: 'cards', showLabels: true, accent: '#123456', secondary: '#abcdef',
+    scale: 110, opacity: 75, unit: 'mph', widgets: { voice: false },
+    positions: { vitals: { x: 11, y: 65 }, vehicle: { x: 70, y: 81 } },
+  });
+  assert.equal(result.version, 2);
+  assert.equal(result.layout, 'row');
+  assert.equal(result.showLabels, false);
+  assert.equal(result.accent, '#123456');
+  assert.equal(result.secondary, '#abcdef');
+  assert.equal(result.scale, 110);
+  assert.equal(result.opacity, 75);
+  assert.equal(result.unit, 'mph');
+  assert.equal(result.widgets.voice, false);
+  assert.deepEqual(result.positions.vitals, { x: 11, y: 65 });
+  assert.deepEqual(result.positions.vehicle, { x: 70, y: 81 });
+});
+
+test('version 2 can enable labels and select compact row after migration', () => {
+  const result = normalizeSettings({ version: 2, layout: 'compact', showLabels: true });
+  assert.equal(result.layout, 'compact');
+  assert.equal(result.showLabels, true);
+  assert.equal(normalizeSettings({ layout: 'cards', showLabels: true }).showLabels, false);
 });

@@ -23,18 +23,18 @@ Config.Fuel = { Resource = '', Export = 'GetFuel' }
 -- localmente dal client FiveM, separatamente per identificatore ESX/personaggio.
 -- x/y sono percentuali dello schermo riferite all'angolo superiore sinistro.
 Config.DefaultSettings = {
-    version = 1,
+    version = 2,
     accent = '#a78bfa',
     secondary = '#67e8f9',
-    opacity = 85,
+    opacity = 65,
     scale = 100,
-    layout = 'cards',
-    showLabels = true,
+    layout = 'row',
+    showLabels = false,
     unit = 'kmh',
     widgets = { vitals = true, vehicle = true, voice = true },
     positions = {
-        vitals = { x = 20, y = 86 },
-        vehicle = { x = 78, y = 72 },
-        voice = { x = 20, y = 80 }
+        vitals = { x = 20, y = 90 },
+        vehicle = { x = 78, y = 90 },
+        voice = { x = 62, y = 90 }
     }
 }

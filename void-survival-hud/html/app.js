@@ -2,7 +2,9 @@ import { DEFAULTS, clone, clamp, normalizeSettings, fitPosition } from './settin
 
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
-const isNui = typeof window.GetParentResourceName === 'function';
+// The live NUI is always transparent. Demo content only belongs to preview.html.
+const isPreview = document.documentElement.dataset.preview === 'true';
+const isNui = !isPreview;
 const storageKey = 'void-survival-hud:preview:v1';
 let defaults = clone(DEFAULTS);
 let saved = clone(defaults);
@@ -13,7 +15,7 @@ let selected = 'vitals';
 let toastTimer;
 let data = { visible: false, vehicle: { active: false } };
 let previewVehicle = true;
-const names = { vitals: 'Condizioni', vehicle: 'Veicolo', voice: 'Voce' };
+const names = { vitals: 'Indicatori', vehicle: 'Veicolo', voice: 'Voce' };
 const palettes = {
   void: ['#a78bfa', '#67e8f9'], toxic: ['#bef264', '#fbbf24'], ember: ['#fb923c', '#fda4af'],
 };
@@ -30,7 +32,11 @@ async function post(endpoint, payload = {}) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), 8000);
   try {
-    const response = await fetch(`https://${window.GetParentResourceName()}/${endpoint}`, {
+    let resource = typeof window.GetParentResourceName === 'function' ? window.GetParentResourceName() : null;
+    if (!resource && location.hostname.startsWith('cfx-nui-')) resource = location.hostname.slice(8);
+    if (!resource && location.protocol === 'nui:') resource = location.hostname;
+    if (!resource || !/^[a-z0-9_.-]+$/i.test(resource)) throw new Error('Collegamento NUI non disponibile.');
+    const response = await fetch(`https://${resource}/${endpoint}`, {
       method: 'POST', headers: { 'Content-Type': 'application/json; charset=UTF-8' },
       body: JSON.stringify(payload), signal: controller.signal,
     });
@@ -187,7 +193,7 @@ function render() {
   $('#speed').replaceChildren(dim, document.createTextNode(speedText.slice(leading.length)));
   $('#speed-unit').textContent = miles ? 'MPH' : 'KM/H';
   $('#gear').textContent = active && /^[NR0-9]{1,2}$/.test(String(vehicle.gear)) ? String(vehicle.gear) : 'N';
-  $('#vehicle .eyebrow').lastChild.textContent = active ? ' TELEMETRIA' : ' ANTEPRIMA VEICOLO';
+  $('#vehicle').setAttribute('aria-label', active ? 'Strumenti veicolo' : 'Anteprima strumenti veicolo: dati non disponibili');
   $('#rpm-fill').style.width = `${active && Number.isFinite(vehicle.rpm) ? clamp(vehicle.rpm, 0, 1) * 100 : 0}%`;
   const fuel = active ? percentage(vehicle.fuel) : null;
   $('#fuel').textContent = fuel === null ? '--%' : `${Math.round(fuel)}%`;
@@ -348,7 +354,6 @@ function previewData() {
 
 if (!isNui) {
   document.body.classList.add('preview');
-  for (const id of ['demo-scene', 'preview-heading', 'preview-notice', 'preview-controls']) $(`#${id}`).hidden = false;
   try { saved = normalizeSettings(JSON.parse(localStorage.getItem(storageKey))); }
   catch { saved = clone(defaults); }
   settings = clone(saved);

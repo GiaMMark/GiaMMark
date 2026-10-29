@@ -1,0 +1,1 @@
+html:root,html:root body{background:#303d42!important} #preview-notice{position:fixed;top:24px;left:24px;color:#aab6bc;font:12px Arial,sans-serif} #preview-controls{position:fixed;top:50px;left:24px;display:flex;gap:8px} @media(max-width:700px){#preview-notice{top:12px;left:12px;font-size:10px}#preview-controls{top:35px;left:12px}}

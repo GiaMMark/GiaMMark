@@ -5,12 +5,12 @@ local hunger, thirst = false, false
 local trip = { vehicle = 0, distance = 0.0, coords = nil, at = nil }
 
 local baseSettings = {
-    version = 1, accent = '#a78bfa', secondary = '#67e8f9', opacity = 85,
-    scale = 100, layout = 'cards', showLabels = true, unit = 'kmh',
+    version = 2, accent = '#a78bfa', secondary = '#67e8f9', opacity = 65,
+    scale = 100, layout = 'row', showLabels = false, unit = 'kmh',
     widgets = { vitals = true, vehicle = true, voice = true },
     positions = {
-        vitals = { x = 20, y = 86 }, vehicle = { x = 78, y = 72 },
-        voice = { x = 20, y = 80 }
+        vitals = { x = 20, y = 90 }, vehicle = { x = 78, y = 90 },
+        voice = { x = 62, y = 90 }
     }
 }
 
@@ -34,7 +34,7 @@ end
 local function sanitize(input, fallback)
     local result = copy(fallback)
     if type(input) ~= 'table' then return result end
-    result.version = 1
+    result.version = 2
     for _, key in ipairs({ 'accent', 'secondary' }) do
         if type(input[key]) == 'string' and input[key]:match('^#%x%x%x%x%x%x$') then
             result[key] = input[key]:lower()
@@ -42,9 +42,20 @@ local function sanitize(input, fallback)
     end
     result.opacity = clamp(input.opacity, 35, 100, result.opacity)
     result.scale = clamp(input.scale, 70, 130, result.scale)
-    if input.layout == 'cards' or input.layout == 'compact' then result.layout = input.layout end
+    if input.layout == 'row' or input.layout == 'compact' then
+        result.layout = input.layout
+    elseif input.layout == 'cards' then
+        result.layout = 'row'
+    end
     if input.unit == 'kmh' or input.unit == 'mph' then result.unit = input.unit end
-    if type(input.showLabels) == 'boolean' then result.showLabels = input.showLabels end
+    -- La prima versione aveva etichette e riquadri: passa alla riga pulita.
+    -- Mantiene colori, posizione e moduli salvati; dalla v2 le etichette sono una scelta.
+    local legacy = input.version == 1 or (input.version ~= 2 and input.layout == 'cards')
+    if legacy then
+        result.showLabels = false
+    elseif type(input.showLabels) == 'boolean' then
+        result.showLabels = input.showLabels
+    end
     for _, widget in ipairs({ 'vitals', 'vehicle', 'voice' }) do
         if type(input.widgets) == 'table' and type(input.widgets[widget]) == 'boolean' then
             result.widgets[widget] = input.widgets[widget]
@@ -209,6 +220,12 @@ end)
 RegisterCommand(Config.Command or 'hud', function()
     if editing then closeEditor() return end
     if not loaded then return end
+    if not nuiReady then
+        if ESX and type(ESX.ShowNotification) == 'function' then
+            pcall(ESX.ShowNotification, 'HUD non ancora pronto. Controlla la console F8.')
+        end
+        return
+    end
     editing = true
     sendInit()
     SetNuiFocus(true, true)

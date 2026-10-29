@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <style>html,body{background:transparent!important;background-image:none!important;color-scheme:normal!important}</style>
   <title>VOID — Survival HUD</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,26 +25,8 @@
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
   </svg>
 
-  <div id="demo-scene" hidden aria-hidden="true">
-    <div class="sky-glow"></div>
-    <svg class="landscape" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
-      <defs><linearGradient id="mountain" x2="0" y2="1"><stop stop-color="#263944"/><stop offset="1" stop-color="#0d1a20"/></linearGradient><linearGradient id="road" x2="0" y2="1"><stop stop-color="#243033"/><stop offset="1" stop-color="#101719"/></linearGradient><g id="pine"><path d="M0 0-24 55h13l-29 39h19l-31 49h47v24H5v-24h47L21 94h19L11 55h13Z"/></g></defs>
-      <path fill="#2d414b" opacity=".4" d="m0 540 190-210 120 115 190-280 217 270 95-95 220 220 180-300 220 210 168-150v680H0Z"/>
-      <path fill="url(#mountain)" d="m0 615 190-200 160 170 240-240 310 270 210-180 270 210 220-200v555H0Z"/>
-      <path fill="#101e23" d="M0 690q300-150 590 20t1010-70v360H0Z"/>
-      <g fill="#0b171c"><use href="#pine" transform="translate(80 400) scale(2.9)"/><use href="#pine" transform="translate(220 480) scale(1.9)"/><use href="#pine" transform="translate(340 550) scale(1.6)"/><use href="#pine" transform="translate(1430 360) scale(3.3)"/><use href="#pine" transform="translate(1290 480) scale(2.3)"/><use href="#pine" transform="translate(1180 575) scale(1.4)"/><use href="#pine" transform="translate(1040 620) scale(.9)"/></g>
-      <path fill="url(#road)" d="M790 700q-45 80-220 300h600L810 700Z"/>
-      <path fill="none" stroke="#b6c2ad" stroke-width="3" opacity=".2" stroke-dasharray="22 35" d="M801 716q-10 140 35 284"/>
-      <path fill="none" stroke="#59685e" stroke-width="3" opacity=".25" d="M788 715 601 1000m214-285 326 285"/>
-    </svg>
-    <div class="scene-grain"></div>
-  </div>
-  <div id="preview-heading" hidden><span class="brand-mark">V</span><div><span class="eyebrow">VOID / SURVIVAL</span><h1>Meno rumore.<br>Più sopravvivenza.</h1><p>Solo quello che ti serve. Esattamente dove vuoi.</p></div></div>
-  <div id="preview-notice" hidden><span class="live-dot"></span> ANTEPRIMA NEL BROWSER <span>•</span> DATI DIMOSTRATIVI</div>
-
   <main id="hud" aria-label="HUD sopravvivenza" hidden>
-    <section id="vitals" class="widget vitals" data-widget="vitals" aria-label="Condizioni del personaggio">
-      <div class="widget-top"><span class="eyebrow"><i class="tiny-square"></i> CONDIZIONI</span><span class="module-code">SYS / 01</span></div>
+    <section id="vitals" class="widget vitals" data-widget="vitals" aria-label="Indicatori del personaggio">
       <div class="stats">
         <div class="stat" data-stat="health"><svg><use href="#i-heart"/></svg><span class="stat-value">--</span><span class="stat-label">VITA</span><div class="stat-track"><i></i></div></div>
         <div class="stat" data-stat="armor"><svg><use href="#i-shield"/></svg><span class="stat-value">--</span><span class="stat-label">ARMATURA</span><div class="stat-track"><i></i></div></div>
@@ -53,7 +35,7 @@
         <div class="stat" data-stat="stress"><svg><use href="#i-brain"/></svg><span class="stat-value">--</span><span class="stat-label">STRESS</span><div class="stat-track"><i></i></div></div>
         <div class="stat" data-stat="stamina"><svg><use href="#i-bolt"/></svg><span class="stat-value">--</span><span class="stat-label">ENERGIA</span><div class="stat-track"><i></i></div></div>
       </div>
-      <span class="drag-label"><svg><use href="#i-move"/></svg> CONDIZIONI</span>
+      <span class="drag-label"><svg><use href="#i-move"/></svg> INDICATORI</span>
     </section>
 
     <section id="voice" class="widget voice" data-widget="voice" aria-label="Voce">
@@ -62,39 +44,38 @@
     </section>
 
     <section id="vehicle" class="widget vehicle" data-widget="vehicle" aria-label="Strumentazione veicolo">
-      <div class="widget-top"><span class="eyebrow"><i class="tiny-square"></i> TELEMETRIA</span><svg id="vehicle-lights" class="light-icon"><use href="#i-light"/></svg></div>
-      <div class="speed-row"><div class="speed-number" id="speed">000</div><div class="speed-meta"><span id="speed-unit">KM/H</span><div class="gear-box"><span>MARCIA</span><strong id="gear">N</strong></div></div></div>
+      <div class="speed-row"><div class="speed-number" id="speed">000</div><div class="speed-meta"><span id="speed-unit">KM/H</span><div class="gear-box" title="Marcia"><strong id="gear">N</strong></div></div></div>
       <div class="rpm-track" aria-label="Giri motore"><i id="rpm-fill"></i></div>
-      <div class="vehicle-bottom"><div class="fuel-group"><svg><use href="#i-fuel"/></svg><div class="fuel-track"><i id="fuel-fill"></i></div><span id="fuel">--%</span></div><div class="engine-group" title="Integrità motore"><svg><use href="#i-engine"/></svg><span id="engine">--%</span></div></div>
-      <div class="trip-row"><span>TRAGITTO</span><span><strong id="trip">0.0</strong> <span id="trip-unit">KM</span></span></div>
+      <div class="vehicle-bottom"><div class="fuel-group"><svg><use href="#i-fuel"/></svg><div class="fuel-track"><i id="fuel-fill"></i></div><span id="fuel">--%</span></div><div class="engine-group" title="Integrità motore"><svg><use href="#i-engine"/></svg><span id="engine">--%</span></div><svg id="vehicle-lights" class="light-icon" aria-label="Luci"><use href="#i-light"/></svg></div>
+      <div class="trip-row" title="Distanza del tragitto"><span class="sr-only">Tragitto</span><span><strong id="trip">0.0</strong> <span id="trip-unit">KM</span></span></div>
       <span class="drag-label"><svg><use href="#i-move"/></svg> VEICOLO</span>
     </section>
   </main>
 
   <aside id="editor" aria-label="Personalizzazione HUD" hidden>
-    <header class="editor-header"><div class="editor-brand"><span class="brand-mark small">V</span><div><strong>VOID<span> / HUD</span></strong><span class="subline">IL TUO ISTINTO. LA TUA INTERFACCIA.</span></div></div><button id="close-editor" class="icon-button" aria-label="Chiudi senza salvare">×</button></header>
-    <div class="editor-title"><span class="eyebrow">PERSONALIZZAZIONE</span><h2>Fallo tuo<span>.</span></h2><p>Le tue impostazioni. Solo sul tuo schermo.</p></div>
+    <header class="editor-header"><div class="editor-brand"><span class="brand-mark small">V</span><div><strong>VOID<span> / HUD</span></strong></div></div><button id="close-editor" class="icon-button" aria-label="Chiudi senza salvare">×</button></header>
+    <div class="editor-title"><h2>Impostazioni HUD</h2><p>Sposta i moduli e scegli come visualizzarli.</p></div>
     <div class="editor-tabs" role="tablist" aria-label="Sezioni editor"><button id="tab-style" role="tab" aria-selected="true" aria-controls="panel-style" data-tab="style"><svg><use href="#i-sliders"/></svg> Aspetto</button><button id="tab-position" role="tab" aria-selected="false" aria-controls="panel-position" data-tab="position"><svg><use href="#i-move"/></svg> Posizione</button></div>
 
     <div class="editor-scroll">
       <section id="panel-style" role="tabpanel" aria-labelledby="tab-style">
-        <div class="field-header"><label>STILE INTERFACCIA</label><span>01</span></div>
-        <div class="layout-options" role="group" aria-label="Stile interfaccia"><button class="layout-option" data-layout="cards" aria-pressed="true"><span class="layout-illustration cards-illustration"><i></i><i></i><i></i><i></i></span><span>Modulare</span><svg><use href="#i-check"/></svg></button><button class="layout-option" data-layout="compact" aria-pressed="false"><span class="layout-illustration compact-illustration"><i></i><i></i><i></i><i></i></span><span>Compatto</span><svg><use href="#i-check"/></svg></button></div>
-        <div class="field-header"><span>PALETTE VOID</span><span>02</span></div>
-        <div class="palette-row"><button class="palette active" data-palette="void" aria-label="Palette Void: viola e ciano" aria-pressed="true"><i style="background:#a78bfa"></i><i style="background:#67e8f9"></i><span>Void</span></button><button class="palette" data-palette="toxic" aria-label="Palette Toxic: verde e ambra" aria-pressed="false"><i style="background:#bef264"></i><i style="background:#fbbf24"></i><span>Toxic</span></button><button class="palette" data-palette="ember" aria-label="Palette Ember: arancio e rosa" aria-pressed="false"><i style="background:#fb923c"></i><i style="background:#fda4af"></i><span>Ember</span></button></div>
+        <div class="field-header">Stile</div>
+        <div class="layout-options" role="group" aria-label="Stile interfaccia"><button class="layout-option" data-layout="row" aria-pressed="true"><span class="layout-illustration cards-illustration"><i></i><i></i><i></i><i></i></span><span>Standard</span><svg><use href="#i-check"/></svg></button><button class="layout-option" data-layout="compact" aria-pressed="false"><span class="layout-illustration compact-illustration"><i></i><i></i><i></i><i></i></span><span>Compatto</span><svg><use href="#i-check"/></svg></button></div>
+        <div class="field-header">Colori</div>
+        <div class="palette-row"><button class="palette active" data-palette="void" aria-label="Palette Void: viola e ciano" aria-pressed="true"><i style="background:#a78bfa"></i><i style="background:#67e8f9"></i><span>Void</span></button><button class="palette" data-palette="toxic" aria-label="Palette Toxic: verde e ambra" aria-pressed="false"><i style="background:#bef264"></i><i style="background:#fbbf24"></i><span>Verde</span></button><button class="palette" data-palette="ember" aria-label="Palette Ember: arancio e rosa" aria-pressed="false"><i style="background:#fb923c"></i><i style="background:#fda4af"></i><span>Arancio</span></button></div>
         <div class="color-row"><label><input id="accent" type="color" value="#a78bfa"><span>Primario</span><code id="accent-value">#A78BFA</code></label><label><input id="secondary" type="color" value="#67e8f9"><span>Secondario</span><code id="secondary-value">#67E8F9</code></label></div>
         <div class="range-field"><label for="scale">Dimensione <output id="scale-value">100%</output></label><input id="scale" type="range" min="70" max="130" step="1" value="100"></div>
-        <div class="range-field"><label for="opacity">Opacità pannelli <output id="opacity-value">85%</output></label><input id="opacity" type="range" min="35" max="100" step="1" value="85"></div>
-        <div class="toggle-field"><label for="show-labels">Etichette indicatori<span>I nomi sotto ogni valore</span></label><input id="show-labels" class="switch" type="checkbox" checked></div>
+        <div class="range-field"><label for="opacity">Opacità pannelli <output id="opacity-value">65%</output></label><input id="opacity" type="range" min="35" max="100" step="1" value="65"></div>
+        <div class="toggle-field"><label for="show-labels">Etichette indicatori<span>I nomi sotto ogni valore</span></label><input id="show-labels" class="switch" type="checkbox"></div>
         <div class="unit-field"><label for="unit">Unità velocità</label><select id="unit"><option value="kmh">Chilometri / h</option><option value="mph">Miglia / h</option></select></div>
-        <div class="field-header modules-header"><span>MODULI VISIBILI</span><span>03</span></div>
-        <div class="module-toggles"><label><svg><use href="#i-heart"/></svg> Condizioni<input class="switch" type="checkbox" data-toggle="vitals" checked></label><label><svg><use href="#i-engine"/></svg> Veicolo<input class="switch" type="checkbox" data-toggle="vehicle" checked></label><label><svg><use href="#i-mic"/></svg> Voce<input class="switch" type="checkbox" data-toggle="voice" checked></label></div>
+        <div class="field-header modules-header">Moduli</div>
+        <div class="module-toggles"><label><svg><use href="#i-heart"/></svg> Indicatori<input class="switch" type="checkbox" data-toggle="vitals" checked></label><label><svg><use href="#i-engine"/></svg> Veicolo<input class="switch" type="checkbox" data-toggle="vehicle" checked></label><label><svg><use href="#i-mic"/></svg> Voce<input class="switch" type="checkbox" data-toggle="voice" checked></label></div>
       </section>
       <section id="panel-position" role="tabpanel" aria-labelledby="tab-position" hidden>
-        <div class="position-tip"><svg><use href="#i-move"/></svg><div><strong>Ogni cosa al suo posto.</strong><p>Trascina i moduli sullo schermo oppure usa i cursori per una posizione precisa.</p></div></div>
-        <label class="select-label" for="selected-widget">MODULO SELEZIONATO</label><select id="selected-widget"><option value="vitals">Condizioni del personaggio</option><option value="vehicle">Strumentazione veicolo</option><option value="voice">Indicatore voce</option></select>
+        <div class="position-tip"><svg><use href="#i-move"/></svg><div><strong>Sposta i moduli</strong><p>Trascina i moduli sullo schermo oppure usa i cursori per una posizione precisa.</p></div></div>
+        <label class="select-label" for="selected-widget">MODULO SELEZIONATO</label><select id="selected-widget"><option value="vitals">Indicatori del personaggio</option><option value="vehicle">Strumentazione veicolo</option><option value="voice">Indicatore voce</option></select>
         <div class="range-field"><label for="position-x">Orizzontale <output id="position-x-value">20%</output></label><input id="position-x" type="range" min="0" max="100" step="0.1" value="20"></div>
-        <div class="range-field"><label for="position-y">Verticale <output id="position-y-value">86%</output></label><input id="position-y" type="range" min="0" max="100" step="0.1" value="86"></div>
+        <div class="range-field"><label for="position-y">Verticale <output id="position-y-value">90%</output></label><input id="position-y" type="range" min="0" max="100" step="0.1" value="90"></div>
         <div class="position-note"><span>↔</span><p>Puoi anche selezionare un modulo con <kbd>Tab</kbd> e spostarlo con le frecce. Tieni <kbd>Shift</kbd> per passi più grandi.</p></div>
         <button id="reset-position" class="secondary-button full">Ripristina questa posizione</button>
       </section>
@@ -102,7 +83,6 @@
     <footer class="editor-footer"><button id="reset-settings" class="reset-button">Ripristina tutto</button><div><button id="cancel-editor" class="secondary-button">Annulla</button><button id="save-settings" class="primary-button"><svg><use href="#i-check"/></svg> Salva HUD</button></div><p><kbd>ESC</kbd> chiudi senza salvare <span>•</span> <kbd>F7</kbd> riapri in gioco</p></footer>
   </aside>
 
-  <div id="preview-controls" hidden><button id="preview-vehicle" class="secondary-button">Mostra a piedi</button><button id="preview-editor" class="primary-button"><svg><use href="#i-sliders"/></svg> Personalizza HUD</button></div>
   <div id="toast" role="status" aria-live="polite" hidden></div>
   <script type="module" src="app.js"></script>
 </body>

@@ -1,8 +1,9 @@
 # Void Survival HUD — FiveM ESX
 
-HUD minimale in nero, viola e ciano: vita, armatura, fame, sete, resistenza/ossigeno,
+HUD a riga in nero, viola e ciano: vita, armatura, fame, sete, resistenza/ossigeno,
 stress JG, voce e strumenti veicolo. Tutti i player possono cambiare posizione,
-dimensione, trasparenza, colori, layout e visibilità dei gruppi senza permessi staff.
+dimensione, trasparenza, colori, larghezza del layout e visibilità dei gruppi senza permessi staff.
+Nessun titolo sopra gli indicatori; le etichette sono nascoste inizialmente.
 
 ## Installazione
 
@@ -28,6 +29,18 @@ dimensione, trasparenza, colori, layout e visibilità dei gruppi senza permessi 
 
 Non richiede SQL, npm, librerie NUI esterne, nuovi eventi server o credenziali.
 Le eventuali dipendenze del tuo ESX e del tuo addon JG restano quelle del tuo server.
+
+## Aggiornamento dalla prima versione
+
+Ferma `void-survival-hud`, sostituisci la cartella con quella del nuovo ZIP e avvia
+`ensure void-survival-hud`. Non lasciare una seconda copia della risorsa avviata.
+La pagina di gioco ora forza lo sfondo trasparente e non contiene la scena
+di anteprima. La preview è separata in `preview.html`, attivabile solo esplicitamente.
+La versione 1.1 usa una riga orizzontale con layout normale o compatto. Le preferenze
+precedenti vengono lette: colori, posizione, dimensione e moduli restano salvati;
+i vecchi riquadri diventano una riga e le etichette iniziali vengono nascoste.
+Per applicare le nuove posizioni iniziali apri `/hud`, premi **Ripristina tutto**
+e poi **Salva HUD**.
 
 ## Editor personale
 
@@ -110,12 +123,12 @@ metodo `readFuel` di `client/main.lua`.
 ## Anteprima fuori da FiveM
 
 Dalla cartella della risorsa avvia `python3 -m http.server 8000 --directory html`
-e apri la porta 8000 nel tuo browser locale. L'anteprima usa dati dimostrativi,
+e apri `http://localhost:8000/preview.html` nel tuo browser locale. L'anteprima usa dati dimostrativi,
 non si collega a ESX e salva le preferenze nel browser, separate da quelle in gioco.
-Non aprire `index.html` direttamente come file: gli script sono moduli JavaScript.
+Non aprire `preview.html` direttamente come file: gli script sono moduli JavaScript.
 I file NUI sono già pronti, senza compilazione o download da CDN.
 
-I tre test di normalizzazione e posizionamento si eseguono con
+I cinque test di normalizzazione, migrazione e posizionamento si eseguono con
 `node tests/settings.test.mjs` (Node 18 o successivo, solo per lo sviluppo).
 
 La preview browser serve a controllare interfaccia ed editor. La verifica dei
