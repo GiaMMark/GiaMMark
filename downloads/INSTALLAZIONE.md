@@ -1,4 +1,4 @@
-Aggiornamento grafico revisione 5: leggere GRAFICA-R5.md per palette rossa/bianca e griglia a tutta larghezza. Motore e correzioni della revisione 4 conservati.
+Aggiornamento revisione 6: leggere PED-CENTRO-R6.md e applicare anche ped-centro-patch.zip per allineare il ped. Grafica rosso/bianco e motore precedenti conservati.
 
 # ox_inventory con griglia e ingombri
 
