@@ -1,4 +1,4 @@
-Aggiornamento revisione 3: leggere CORREZIONE-ITEM.md per il blocco con oggetti e CORREZIONE-RIAPERTURA.md per apertura/chiusura.
+Aggiornamento revisione 4: leggere DIAGNOSTICA-R4.md per il crash residuo e il comando F8 oxgridversion. Incluse le correzioni precedenti.
 
 # ox_inventory con griglia e ingombri
 
