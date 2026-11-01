@@ -1,3 +1,5 @@
+Aggiornamento revisione 2: leggere anche CORREZIONE-RIAPERTURA.md per la correzione di apertura/chiusura.
+
 # ox_inventory con griglia e ingombri
 
 Questa estensione mantiene ox_inventory come inventario principale. Aggiunge ingombri rettangolari, rotazione e validazione server. Non è la risorsa commerciale Grydsystem e non sostituisce ox_inventory con Core Inventory. Non avviare core_inventory/core_clothing e non importare i loro SQL per installare questa modifica.
