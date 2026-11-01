@@ -1,4 +1,4 @@
-Aggiornamento revisione 2: leggere anche CORREZIONE-RIAPERTURA.md per la correzione di apertura/chiusura.
+Aggiornamento revisione 3: leggere CORREZIONE-ITEM.md per il blocco con oggetti e CORREZIONE-RIAPERTURA.md per apertura/chiusura.
 
 # ox_inventory con griglia e ingombri
 
