@@ -1,4 +1,4 @@
-Aggiornamento revisione 4: leggere DIAGNOSTICA-R4.md per il crash residuo e il comando F8 oxgridversion. Incluse le correzioni precedenti.
+Aggiornamento grafico revisione 5: leggere GRAFICA-R5.md per palette rossa/bianca e griglia a tutta larghezza. Motore e correzioni della revisione 4 conservati.
 
 # ox_inventory con griglia e ingombri
 
