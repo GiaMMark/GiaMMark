@@ -1,4 +1,17 @@
-# Oro Nero 7.1 · Menu fotografico e ingresso scenografico
+# Oro Nero 7.2 · Logo, lucciola e musica
+
+- [Progetto completo 7.2](Oro-Nero-7.2-Logo-Lucciola-Musica.zip): sorgenti, build statica, test e guida Netlify.
+- [Anteprima statica 7.2](Oro-Nero-7.2-Anteprima-statica.zip): file pronti per hosting statico.
+
+Il menu è un elenco senza fotografie né segnaposti, con nomi, descrizioni, prezzi e allergeni. Anche la sua testata è senza foto.
+
+L’intro mostra solo l’emblema del logo: parte piccolo, ruota e si ingrandisce, poi una lucciola dorata apre il sito. L’inverno di Vivaldi, fornito dall’utente, è disponibile su tutte le pagine con avvio/pausa. La musica parte dopo un’interazione consentita dal browser; preferenza e posizione vengono conservate nella sessione. La navigazione tra pagine può interrompere brevemente l’audio e richiedere un nuovo tocco.
+
+Le nuove foto non sono ancora incluse: tutti gli ZIP ricevuti superano il limite di trasferimento di 32 MiB. Sono necessari file singoli o archivi più piccoli per aggiungerle progressivamente. Le fotografie già presenti sono mantenute.
+
+Per l’admin persistente occorre il deploy completo Netlify descritto nel progetto. Nessun deploy è stato eseguito con questa modifica.
+
+## Versione 7.1 · Menu fotografico e ingresso scenografico
 
 ## Scarica la versione aggiornata
 
