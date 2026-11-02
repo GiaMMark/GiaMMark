@@ -1,4 +1,19 @@
-# Oro Nero 7.2 · Logo, lucciola e musica
+# Oro Nero 7.3 · Musica continua e automatica
+
+- **[Progetto completo 7.3](Oro-Nero-7.3-Musica-Continua.zip)**: sorgenti, sito compilato, 44 test e guida Netlify.
+- [Anteprima statica 7.3](Oro-Nero-7.3-Anteprima-statica.zip): file pronti per hosting statico.
+
+La musica continua sullo stesso lettore passando tra tutte le pagine interne, compresi menu, recensioni, allergeni, privacy, QR e admin, e usando avanti/indietro. Il nuovo estratto di Vivaldi dura circa 6 minuti e 26 secondi, è normalizzato e riprodotto al 100% del volume del lettore. Il sito tenta l’avvio automatico sonoro; se il browser lo blocca, basta la prima interazione sul sito. Il comando pausa rimane disponibile e la scelta viene rispettata.
+
+Il menu resta testuale, senza fotografie o segnaposti. L’intro conserva solo l’emblema del logo, che ruota e si ingrandisce; una lucciola apre il sito. Verificati 44 test e la continuità audio in Chromium, anche su smartphone, senza errori JavaScript nelle pagine provate.
+
+Un ricaricamento completo, una nuova scheda e l’uscita dal sito seguono le regole audio del browser. Le nuove fotografie restano in attesa di file singoli o ZIP sotto 32 MiB.
+
+Per l’admin persistente occorre il deploy completo descritto nella guida. **Nessun deploy Netlify è stato eseguito.** GitHub rende disponibili i download e non pubblica automaticamente il sito su Netlify.
+
+---
+
+# Versione 7.2 · Logo, lucciola e musica
 
 - [Progetto completo 7.2](Oro-Nero-7.2-Logo-Lucciola-Musica.zip): sorgenti, build statica, test e guida Netlify.
 - [Anteprima statica 7.2](Oro-Nero-7.2-Anteprima-statica.zip): file pronti per hosting statico.
