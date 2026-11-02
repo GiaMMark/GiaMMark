@@ -1,4 +1,13 @@
-# Oro Nero 7.3 · Musica continua e automatica
+# Oro Nero 7.4 · Intro sincronizzata alla musica
+
+- [Progetto completo 7.4](Oro-Nero-7.4-Intro-Musica-Sincronizzata.zip): sorgenti, build, MP3 e 53 test.
+- [Anteprima statica 7.4](Oro-Nero-7.4-Anteprima-statica.zip): file compilati per hosting statico.
+
+Corretto il caso in cui l’intro terminava prima che l’MP3 avesse caricato. Ora, durante il caricamento, il logo resta piccolo; rotazione, ingrandimento e lucciola iniziano quando il lettore è realmente in riproduzione. L’attesa massima è di otto secondi e si può sempre saltare. Blocco autoplay, pausa ed errore fanno proseguire l’intro senza attesa.
+
+Musica continua fra le pagine, volume al 100% e menu senza foto conservati. La correzione non scavalca i blocchi autoplay dei browser. Nessun deploy Netlify eseguito: gli ZIP aggiornati vanno pubblicati sull’hosting per modificare il sito online.
+
+## Versione 7.3 · Musica continua e automatica
 
 - **[Progetto completo 7.3](Oro-Nero-7.3-Musica-Continua.zip)**: sorgenti, sito compilato, 44 test e guida Netlify.
 - [Anteprima statica 7.3](Oro-Nero-7.3-Anteprima-statica.zip): file pronti per hosting statico.
