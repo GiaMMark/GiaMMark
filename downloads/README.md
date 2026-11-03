@@ -1,4 +1,16 @@
-# Oro Nero 7.5 · Sottofondo discreto e primo ingresso
+# Oro Nero 7.6 · Logo, titoli e ingresso con musica
+
+- [Progetto completo 7.6](Oro-Nero-7.6-Logo-Titoli-Intro.zip): sorgenti, build e 68 test.
+- [Anteprima statica 7.6](Oro-Nero-7.6-Anteprima-statica.zip): file compilati per hosting statico.
+- [Anteprima mobile della homepage](Oro-Nero-7.6-Home-mobile.png).
+
+In alto compare soltanto l’emblema in lenta rotazione, senza scritte accanto. Il titolo è “Sapori di laguna, emozioni da vivere.”; anche gli altri titoli scorrono naturalmente senza interruzioni forzate.
+
+Con autoplay consentito la musica avvia l’intro automaticamente. Se il browser chiede un gesto, un tocco sul logo o sulla freccia avvia musica e animazione insieme, prima della homepage. × ed Escape entrano senza musica. Conservati sottofondo discreto, continuità tra le pagine, menu senza foto e primo ingresso senza lampo della home.
+
+Nessun deploy Netlify eseguito. Pubblicare l’intera build aggiornata sull’hosting per vedere queste modifiche sul sito online.
+
+## Versione 7.5 · Sottofondo discreto e primo ingresso
 
 - [Progetto completo 7.5](Oro-Nero-7.5-Sottofondo-Intro.zip): sorgenti, build, MP3 più basso e 62 test.
 - [Anteprima statica 7.5](Oro-Nero-7.5-Anteprima-statica.zip): file compilati per hosting statico.
