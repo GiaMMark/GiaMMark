@@ -1,4 +1,17 @@
-# Oro Nero 7.6 · Logo, titoli e ingresso con musica
+# Oro Nero 7.7 · Marchio nitido e ingresso rifinito
+
+- [Guarda la nuova intro](Oro-Nero-7.7-Intro.mp4).
+- [Progetto completo 7.7](Oro-Nero-7.7-Marchio-Intro.zip): sorgenti, build, nuovo emblema e 68 test.
+- [Anteprima statica 7.7](Oro-Nero-7.7-Anteprima-statica.zip): file compilati per hosting statico.
+- [Nuovo marchio nel footer](Oro-Nero-7.7-Marchio-footer.png) · [Homepage mobile](Oro-Nero-7.7-Home-mobile.png) · [Emblema PNG trasparente](Oro-Nero-7.7-Emblema.png).
+
+Emblema ripulito ad alta risoluzione, senza ingrandire il piccolo logo precedente. Intro con marchio leggibile, rotazione morbida, alone discreto e una sola lucciola con scia sottile; apertura più soffusa. Piè di pagina coordinato con nome nitido composto in HTML e testo più leggibile.
+
+Conservati solo emblema rotante nella testata, titoli compatti, musica discreta e continua, ingresso sincronizzato e menu senza foto. Il permesso di autoplay resta sotto il controllo del browser. Video e schermate sono anteprime della build, non un deploy del sito.
+
+Nessun deploy Netlify eseguito. Pubblicare l’intera build aggiornata sull’hosting per vedere le modifiche online.
+
+## Versione 7.6 · Logo, titoli e ingresso con musica
 
 - [Progetto completo 7.6](Oro-Nero-7.6-Logo-Titoli-Intro.zip): sorgenti, build e 68 test.
 - [Anteprima statica 7.6](Oro-Nero-7.6-Anteprima-statica.zip): file compilati per hosting statico.
