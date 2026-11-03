@@ -1,4 +1,15 @@
-# Oro Nero 7.7 · Marchio nitido e ingresso rifinito
+# Oro Nero 7.8 · Intro automatica, senza clic
+
+- [Progetto completo 7.8](Oro-Nero-7.8-Intro-Automatica.zip): sorgenti, build e 73 test.
+- [Anteprima statica 7.8](Oro-Nero-7.8-Anteprima-statica.zip): file compilati per hosting statico.
+
+L’intro parte da sola a ogni apertura completa o ricaricamento della homepage. Non richiede clic sul logo, sulla freccia o su “Rivivi l’ingresso”; non viene bloccata dalla musica o dai vecchi indicatori di visita salvati nella sessione. Tornando alla home tramite navigazione interna, l’animazione non si ripete automaticamente.
+
+La freccia salta sempre l’intro. × ed Escape entrano senza musica. Conservati marchio nitido, grafica rifinita, sottofondo discreto e menu senza foto. L’autoplay sonoro viene tentato separatamente e resta soggetto alle regole del browser.
+
+Nessun deploy Netlify eseguito. Pubblicare l’intera build aggiornata sull’hosting per vedere le modifiche online.
+
+## Versione 7.7 · Marchio nitido e ingresso rifinito
 
 - [Guarda la nuova intro](Oro-Nero-7.7-Intro.mp4).
 - [Progetto completo 7.7](Oro-Nero-7.7-Marchio-Intro.zip): sorgenti, build, nuovo emblema e 68 test.
