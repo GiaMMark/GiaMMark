@@ -1,4 +1,18 @@
-# Oro Nero 7.8 · Intro automatica, senza clic
+# Oro Nero 7.9 · Lingue, storia e squadra
+
+- [Progetto completo 7.9](Oro-Nero-7.9-Lingue-Storia-Squadra.zip): sorgenti, build e 81 test.
+- [Anteprima statica 7.9](Oro-Nero-7.9-Anteprima-statica.zip): file compilati per hosting statico.
+- [Selettore delle lingue](Oro-Nero-7.9-Lingue-mobile.png) · [Squadra su mobile](Oro-Nero-7.9-Squadra-mobile.png) · [Squadra su desktop](Oro-Nero-7.9-Squadra-desktop.png).
+
+Selettore nella testata e nel footer, con ricerca fra 249 lingue e varianti. Apre la pagina pubblica corrente tramite Google Translate in una nuova scheda; la pagina originale resta in italiano. Non richiede chiavi o abbonamenti. La copertura dipende dal servizio e non comprende letteralmente tutte le lingue del mondo. L’anteprima locale e l’area amministrativa non vengono inviate a Google. La navigazione è verificata con destinazione simulata; la traduzione remota e la resa dei contenuti dinamici devono essere verificate sul dominio pubblicato.
+
+Home con “La nostra storia” e “La squadra”: Chef, Aiuto chef, Sala e Accoglienza. I testi usano l’identità già presente nel progetto; nomi, fotografie, anno di apertura e biografie reali non sono stati inventati e restano da personalizzare.
+
+81 test superati e controlli browser da 320 a 1440 pixel, incluse navigazione e intro automatica. Conservati sottofondo discreto e continuo, marchio rotante, intro senza clic e menu senza foto.
+
+Nessun deploy Netlify eseguito. Pubblicare l’intera build aggiornata sull’hosting per vedere le modifiche online.
+
+## Versione 7.8 · Intro automatica, senza clic
 
 - [Progetto completo 7.8](Oro-Nero-7.8-Intro-Automatica.zip): sorgenti, build e 73 test.
 - [Anteprima statica 7.8](Oro-Nero-7.8-Anteprima-statica.zip): file compilati per hosting statico.
