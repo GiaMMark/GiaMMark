@@ -1,4 +1,15 @@
-# Oro Nero 7.4 · Intro sincronizzata alla musica
+# Oro Nero 7.5 · Sottofondo discreto e primo ingresso
+
+- [Progetto completo 7.5](Oro-Nero-7.5-Sottofondo-Intro.zip): sorgenti, build, MP3 più basso e 62 test.
+- [Anteprima statica 7.5](Oro-Nero-7.5-Anteprima-statica.zip): file compilati per hosting statico.
+
+Musica resa più discreta direttamente nel file audio, con un’ulteriore regolazione del lettore. L’avvio viene tentato prima del caricamento degli altri moduli; quando il browser richiede un gesto, basta una normale interazione con il sito, senza usare il pulsante musicale.
+
+Eliminato il lampo della homepage prima dell’intro: la copertura iniziale è presente dal primo disegno. Skip ed Escape funzionano anche prima del caricamento completo; un eventuale errore non lascia il sito bloccato.
+
+Conservati musica continua tra le pagine, logo e lucciola, sincronizzazione dell’intro e menu senza foto. L’autoplay sonoro resta soggetto alle regole del browser. Nessun deploy Netlify eseguito: pubblicare i nuovi file sull’hosting per aggiornare il sito online.
+
+## Versione 7.4 · Intro sincronizzata alla musica
 
 - [Progetto completo 7.4](Oro-Nero-7.4-Intro-Musica-Sincronizzata.zip): sorgenti, build, MP3 e 53 test.
 - [Anteprima statica 7.4](Oro-Nero-7.4-Anteprima-statica.zip): file compilati per hosting statico.
