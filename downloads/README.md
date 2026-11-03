@@ -1,4 +1,18 @@
-# Oro Nero 7.9 · Lingue, storia e squadra
+# Oro Nero 7.10 · Uno spazio dedicato alle foto
+
+- [Progetto completo 7.10](Oro-Nero-7.10-Galleria-Fotografica.zip): sorgenti, build e 81 test.
+- [Anteprima statica 7.10](Oro-Nero-7.10-Anteprima-statica.zip): file compilati per hosting statico.
+- [Galleria su mobile](Oro-Nero-7.10-Galleria-mobile.png) · [Galleria su desktop](Oro-Nero-7.10-Galleria-desktop.png) · [Foto ingrandita](Oro-Nero-7.10-Galleria-zoom.png).
+
+Pagina `/galleria/` dedicata alle fotografie, con accesso dalla navigazione, dal footer e dalla home. Griglia responsive nelle proporzioni originali; ingrandimento con foto completa, precedente/successiva, frecce da tastiera ed Escape. La musica continua durante la navigazione interna.
+
+La galleria contiene per ora sei foto già presenti nel progetto. **Le nuove foto degli ZIP caricati non sono ancora importate:** gli archivi superano il limite di trasferimento di 32 MiB. Servono immagini singole o ZIP sotto i 32 MB per aggiungerle. Nessuna nuova fotografia è stata inventata.
+
+Conservati sezioni storia e squadra, selettore di traduzione, intro automatica e menu senza foto. La galleria si modifica nei sorgenti; le istruzioni sono nel README del progetto completo.
+
+Nessun deploy Netlify eseguito. Pubblicare l’intera build aggiornata sull’hosting per vedere le modifiche online.
+
+## Versione 7.9 · Lingue, storia e squadra
 
 - [Progetto completo 7.9](Oro-Nero-7.9-Lingue-Storia-Squadra.zip): sorgenti, build e 81 test.
 - [Anteprima statica 7.9](Oro-Nero-7.9-Anteprima-statica.zip): file compilati per hosting statico.
