@@ -1,4 +1,19 @@
-# Oro Nero 7.11 · Le tue foto nella home e desktop
+# Oro Nero 7.12 · Menu al primo clic e animazioni su PC
+
+- [Progetto completo 7.12](Oro-Nero-7.12-Menu-Animazioni.zip): sorgenti, build, 23 fotografie e 89 test.
+- [Build statica 7.12](Oro-Nero-7.12-Anteprima-statica.zip): contenuto compilato per hosting statico.
+- [Guarda l’intro animata su PC](Oro-Nero-7.12-Intro-PC.mp4): registrazione senza clic, con movimento ridotto di sistema attivo.
+- [Menu al primo accesso da PC](Oro-Nero-7.12-Menu-PC.png) · [Menu al primo accesso da telefono](Oro-Nero-7.12-Menu-mobile.png).
+
+Corretto il menu che perdeva la grafica nel passaggio dalla home e funzionava solo dopo il refresh. I CSS vengono preparati e applicati nell’ordine corretto, senza rimuovere o riavviare quelli comuni durante un fotogramma visibile. Verificati primo accesso, CSS rallentato, ricerca, ritorni e Indietro/Avanti a 390 e 1440 pixel: interfaccia completa dal primo fotogramma, 13 categorie e 80 voci, stesso lettore musicale in riproduzione.
+
+Su richiesta del proprietario, intro, rotazione e lucciola restano animate anche quando il PC richiede movimento ridotto. Il logo nella testata ruota continuamente. La scelta riguarda gli effetti del marchio; gli altri effetti mantengono le rispettive regole di accessibilità. Avvio automatico senza clic, sequenza di circa 4,1 secondi.
+
+Conservate tutte le 23 foto importate e la galleria nella home. **89 test superati** e due controlli browser indipendenti senza errori JavaScript.
+
+**I download sono aggiornati su GitHub. Per aggiornare il sito online pubblicare l’intera build 7.12 su Netlify; nessun deploy Netlify è stato eseguito.**
+
+## Versione 7.11 · Le tue foto nella home e desktop
 
 - [Progetto completo 7.11](Oro-Nero-7.11-Foto-Home-Desktop.zip): sorgenti, build, 23 foto ottimizzate e 84 test.
 - [Build statica 7.11](Oro-Nero-7.11-Anteprima-statica.zip): contenuto compilato per hosting statico.
