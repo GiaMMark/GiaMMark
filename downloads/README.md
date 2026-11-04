@@ -1,4 +1,21 @@
-# Oro Nero 7.10 · Uno spazio dedicato alle foto
+# Oro Nero 7.11 · Le tue foto nella home e desktop
+
+- [Progetto completo 7.11](Oro-Nero-7.11-Foto-Home-Desktop.zip): sorgenti, build, 23 foto ottimizzate e 84 test.
+- [Build statica 7.11](Oro-Nero-7.11-Anteprima-statica.zip): contenuto compilato per hosting statico.
+- [Home mobile](Oro-Nero-7.11-Home-mobile.png) · [Home desktop](Oro-Nero-7.11-Home-desktop.png).
+- [Galleria nella home su mobile](Oro-Nero-7.11-Galleria-mobile.png) · [Galleria nella home su desktop](Oro-Nero-7.11-Galleria-desktop.png).
+
+Importati tutti i 13 ZIP più recenti: 26 immagini ricevute, 23 foto uniche dopo la rimozione di tre duplicati esatti. Le foto sostituiscono quelle iniziali nell’apertura, nella cucina, nelle proposte, nella cantina, nell’atmosfera e nelle immagini sociali.
+
+La galleria è ora direttamente nella home, raggiungibile dalla navigazione. Mostra sei anteprime e il comando per tutte le 23 foto. Ingrandimento completo, contatore, frecce, Escape e gruppi distinti; la musica continua nei passaggi interni.
+
+Da PC l’intro automatica compare anche con movimento ridotto, come breve logo statico. Con movimento normale restano rotazione e lucciola. Hero desktop a tutta larghezza, sfumatura coerente con il telefono e suggerimento spostato per lasciare spazio al lettore musicale. Verifiche locali fino a 1920 pixel e 84 test superati.
+
+Gli ZIP contengono le versioni WebP ottimizzate; gli originali JPEG sono conservati nello staging dell’ambiente. `foto-sito.csv` associa ogni foto ai file ricevuti. Il menu pubblico resta senza fotografie.
+
+**Questa pubblicazione aggiorna i download GitHub. Per vedere le modifiche sul sito online occorre pubblicare l’intera build 7.11 su Netlify. Nessun deploy Netlify è stato eseguito.**
+
+## Versione 7.10 · Uno spazio dedicato alle foto
 
 - [Progetto completo 7.10](Oro-Nero-7.10-Galleria-Fotografica.zip): sorgenti, build e 81 test.
 - [Anteprima statica 7.10](Oro-Nero-7.10-Anteprima-statica.zip): file compilati per hosting statico.
