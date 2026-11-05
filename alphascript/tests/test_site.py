@@ -5,6 +5,7 @@ from pathlib import Path
 import os
 import threading
 import unittest
+from urllib.parse import parse_qs
 from playwright.sync_api import sync_playwright, expect
 
 SITE = Path(os.environ.get('ALPHASCRIPT_SITE_ROOT', Path(__file__).resolve().parents[1]))
@@ -105,6 +106,94 @@ class SiteTests(unittest.TestCase):
         expect(link).to_be_visible()
         self.assertTrue(link.evaluate('(el)=>{ const r=el.getBoundingClientRect(); return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)); }'))
         self.assertEqual(self.errors,[])
+
+
+    def capture_submission(self):
+        requests = []
+        def receive(route):
+            request = route.request
+            requests.append({'url':request.url, 'method':request.method,
+                             'data':parse_qs(request.post_data or '',keep_blank_values=True)})
+            route.fulfill(status=200, content_type='text/html', body='<p>Transport intercepted locally. No email sent.</p>')
+        self.context.route('https://formsubmit.co/**', receive)
+        return requests
+
+    def fill_contact(self):
+        self.page.locator('#contact-form [name=name]').fill('Giulia D’Amico & Luca')
+        self.page.locator('#contact-form [name=email]').fill('local-test@example.invalid')
+        self.page.locator('#contact-form [name=project]').select_option('Web app')
+        self.page.locator('#contact-form [name=message]').fill('Una dashboard per clienti & ordini.\nVorrei parlarne.')
+        self.page.locator('#contact-form [name=privacy]').check()
+
+    def test_form_posts_reply_address_and_project_to_requested_recipient(self):
+        # Catches a wrong recipient/method or loss of special characters in the submitted payload.
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        with self.page.expect_popup(timeout=4000) as popup:
+            self.page.locator('#contact-form button[type=submit]').click()
+        popup.value.wait_for_load_state()
+        self.assertEqual(len(outgoing),1)
+        self.assertEqual(outgoing[0]['url'],'https://formsubmit.co/alphascript24@gmail.com')
+        self.assertEqual(outgoing[0]['method'],'POST')
+        payload = outgoing[0]['data']
+        self.assertEqual(payload['name'],['Giulia D’Amico & Luca'])
+        self.assertEqual(payload['email'],['local-test@example.invalid'])
+        self.assertEqual(payload['project'],['Web app'])
+        self.assertEqual(payload['message'],['Una dashboard per clienti & ordini.\r\nVorrei parlarne.'])
+        self.assertNotEqual(payload.get('_captcha'),['false'])
+        self.assertEqual(payload['_honey'],[''])
+        self.assertNotIn('inviata con successo',self.page.locator('#form-note').inner_text().lower())
+        self.assertEqual(self.page.locator('[name=message]').input_value(),'Una dashboard per clienti & ordini.\nVorrei parlarne.')
+
+    def test_whitespace_only_message_stays_on_page_and_is_not_submitted(self):
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        self.page.locator('[name=message]').fill('   \n  ')
+        self.page.locator('#contact-form button[type=submit]').click()
+        self.assertEqual(self.page.url,self.base+'/')
+        self.assertEqual(outgoing,[])
+        self.assertNotEqual(self.page.locator('[name=message]').evaluate('(el)=>el.validationMessage'),'')
+        self.page.locator('[name=message]').fill('Una richiesta valida dopo la correzione.')
+        self.assertTrue(self.page.locator('[name=message]').evaluate('(el)=>el.checkValidity()'))
+
+    def test_invalid_email_does_not_submit_or_erase_the_message(self):
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        self.page.locator('[name=email]').fill('indirizzo-non-valido')
+        self.page.locator('#contact-form button[type=submit]').click()
+        self.assertEqual(outgoing,[])
+        self.assertEqual(self.page.url,self.base+'/')
+        self.assertEqual(self.page.locator('[name=message]').input_value(),'Una dashboard per clienti & ordini.\nVorrei parlarne.')
+
+    def test_honeypot_blocks_submission_without_clearing_fields(self):
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        honey = self.page.locator('#contact-form [name=_honey]')
+        self.assertEqual(honey.count(),1)
+        honey.evaluate('(el)=>el.value="automated content"')
+        self.page.locator('#contact-form button[type=submit]').click()
+        self.assertEqual(self.page.url,self.base+'/')
+        self.assertEqual(outgoing,[])
+        self.assertEqual(self.page.locator('[name=name]').input_value(),'Giulia D’Amico & Luca')
+
+    def test_direct_email_alternative_uses_the_same_destination(self):
+        self.visit()
+        alternate = self.page.locator('#contact-email-fallback')
+        expect(alternate).to_be_visible()
+        self.assertEqual(alternate.get_attribute('href'),'mailto:alphascript24@gmail.com')
+
+    def test_native_post_also_works_without_javascript(self):
+        self.context.close()
+        self.context = self.browser.new_context(java_script_enabled=False, viewport={'width':390,'height':844})
+        self.page = self.context.new_page()
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        with self.page.expect_popup(timeout=4000) as popup:
+            self.page.locator('#contact-form button[type=submit]').click()
+        popup.value.wait_for_load_state()
+        self.assertEqual(len(outgoing),1)
+        self.assertEqual(outgoing[0]['method'],'POST')
+        self.assertEqual(outgoing[0]['url'],'https://formsubmit.co/alphascript24@gmail.com')
 
 if __name__=='__main__':
     unittest.main(verbosity=2)

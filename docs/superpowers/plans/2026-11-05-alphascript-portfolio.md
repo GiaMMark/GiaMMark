@@ -48,12 +48,12 @@
 
 **Interfaces:** Form `POST https://formsubmit.co/alphascript24@gmail.com`, target `_blank`, `rel="noopener noreferrer"`; names `name`, `email`, `project`, `message`, `_honey`, `_subject`, `_template`. Visible `#form-note` is a live status. Alternate mailto points to the same recipient.
 
-- [ ] Write a failing browser test: submit a real form with special characters, intercept only the provider transport and assert POST destination, reply email, project and message payload.
-- [ ] Add invalid/whitespace/honeypot cases that assert no outgoing submission, plus edit-preservation and mailto fallback tests.
-- [ ] Observe failures on the current placeholder/mailto implementation.
-- [ ] Implement native POST, honest status text, trimmed required-field validation and honeypot validation. Retain user values; do not set a false delivery success or disable CAPTCHA.
-- [ ] Update privacy to describe the actual provider and destination without inventing the owner’s legal identity.
-- [ ] Run all tests and commit after green verification.
+- [x] Write a failing browser test: submit a real form with special characters, intercept only the provider transport and assert POST destination, reply email, project and message payload.
+- [x] Add invalid/whitespace/honeypot cases that assert no outgoing submission, plus edit-preservation and mailto fallback tests.
+- [x] Observe failures on the current placeholder/mailto implementation.
+- [x] Implement native POST, honest status text, trimmed required-field validation and honeypot validation. Retain user values; do not set a false delivery success or disable CAPTCHA.
+- [x] Update privacy to describe the actual provider and destination without inventing the owner’s legal identity.
+- [x] Run all tests and commit after green verification.
 
 ### Task 3: Delivery and review
 
