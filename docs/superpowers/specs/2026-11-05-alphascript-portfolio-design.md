@@ -34,4 +34,4 @@ Test del modulo senza inviare email reali; controlli in Chromium su desktop e te
 
 ## Stato
 
-Direzione grafica scelta. Proposta tecnica da approvare prima dell’implementazione.
+Direzione grafica scelta. L’utente ha delegato le restanti scelte e chiesto di procedere senza altre domande; implementazione autorizzata.
