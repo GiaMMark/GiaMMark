@@ -1,3 +1,22 @@
+# Oro Nero 7.14 · Un sito più essenziale e richieste via email
+
+- [Progetto completo 7.14](Oro-Nero-7.14-Sito-Modulo-Email.zip): sorgenti, build, fotografie, traduzioni e 102 test.
+- [Build statica 7.14](Oro-Nero-7.14-Anteprima-statica.zip): pronta per hosting statico.
+- [Home desktop](Oro-Nero-7.14-Home-PC.png) · [Home telefono](Oro-Nero-7.14-Home-mobile.png) · [Modulo email](Oro-Nero-7.14-Modulo-email-mobile.png).
+- [Attivare la ricezione delle email](Oro-Nero-7.14-Attivazione-email.md).
+
+Grafica più sobria, fondo avorio, fotografie reali senza oscuramento e testi più diretti su cucina, menu e ristorante. Nome del bistrot leggibile nella testata, didascalie descrittive, pulsanti più chiari e pagine interne coerenti. Conservati 23 fotografie, 80 voci del menu, prezzi, cinque lingue, intro e continuità musicale.
+
+Il modulo richiede nome, email, persone, data e ora e invia a **alphascript24@gmail.com** tramite FormSubmit con verifica antispam. Telefono e note sono facoltativi; chiudere e riaprire conserva i dati. Disponibile anche l’alternativa nel programma email. Il tavolo resta da confermare dal ristorante.
+
+**Per ricevere i messaggi, il titolare della casella deve prima confermare l’email di attivazione FormSubmit, poi provare una nuova richiesta dal sito pubblicato.** Destinatario e contenuto del POST sono stati verificati localmente senza inviare email reali; la consegna alla casella non è stata verificata.
+
+Build e controlli superati, **102 test verdi**. Browser verificato su sei larghezze, da 320 a 1920 pixel: navigazione, galleria, ricerca, traduzioni e modulo, senza errori JavaScript rilevati. QR e accesso amministrativo controllati separatamente anche su mobile.
+
+**Questa versione aggiorna i download GitHub. Nessun deploy Netlify è stato eseguito.** Per aggiornare il sito online pubblicare l’intera build 7.14; per l’amministrazione persistente seguire la guida Netlify nel progetto completo.
+
+---
+
 # Oro Nero 7.13 · Traduzione direttamente nel sito
 
 - [Progetto completo 7.13](Oro-Nero-7.13-Traduzione-Integrata.zip): sorgenti, build, traduzioni locali e 99 test.
