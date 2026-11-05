@@ -1,4 +1,20 @@
-# Oro Nero 7.12 · Menu al primo clic e animazioni su PC
+# Oro Nero 7.13 · Traduzione direttamente nel sito
+
+- [Progetto completo 7.13](Oro-Nero-7.13-Traduzione-Integrata.zip): sorgenti, build, traduzioni locali e 99 test.
+- [Build statica 7.13](Oro-Nero-7.13-Anteprima-statica.zip): contenuto compilato per hosting statico.
+- [Homepage in inglese](Oro-Nero-7.13-Home-English-PC.png) · [Menu in tedesco sul telefono](Oro-Nero-7.13-Menu-Deutsch-mobile.png).
+
+Il selettore cambia lingua nella stessa pagina, senza aprire la copia esterna di Google Translate. La lingua scelta rimane durante navigazione e ricaricamento; la musica continua sullo stesso lettore nei cambi interni.
+
+**Lingue incluse: italiano, inglese, tedesco, francese e spagnolo.** Questa soluzione integrata sostituisce le precedenti 249 scelte esterne. Per altre lingue servono cataloghi aggiuntivi oppure un servizio configurato: non sono dichiarate disponibili traduzioni che non si possono verificare.
+
+Quattro cataloghi locali con 498 chiavi ciascuno comprendono pagine pubbliche, 80 piatti e descrizioni attuali, allergeni, prenotazione, foto e comandi dinamici. La ricerca considera i nomi tradotti. Nessuna API, chiave o abbonamento. Prezzi e dati digitati preservati; l’admin resta in italiano e i nuovi testi senza traduzione conservano l’originale.
+
+HTTP503 e caricamento pendente verificati: messaggio entro tre secondi, pagina utilizzabile, selettore chiudibile e nuovo tentativo possibile. **99 test superati**, oltre a controlli reali su desktop e telefono, senza richieste esterne o popup di traduzione.
+
+**Questi download aggiornano GitHub. Pubblicare l’intera build 7.13 su Netlify per aggiornare il sito online; nessun deploy Netlify è stato eseguito.**
+
+## Versione 7.12 · Menu al primo clic e animazioni su PC
 
 - [Progetto completo 7.12](Oro-Nero-7.12-Menu-Animazioni.zip): sorgenti, build, 23 fotografie e 89 test.
 - [Build statica 7.12](Oro-Nero-7.12-Anteprima-statica.zip): contenuto compilato per hosting statico.
