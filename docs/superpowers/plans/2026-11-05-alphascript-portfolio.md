@@ -22,7 +22,7 @@
 
 ## Review Focus
 
-- Whitespace-only messages must not navigate to the provider or look submitted.
+- With JavaScript enabled, whitespace-only messages must not navigate to the provider or look submitted; without JavaScript retain the browser’s native required-field and email checks.
 - Long text and a 320px viewport must preserve readable content and operable controls.
 - Keyboard users must open and close the mobile navigation, regain focus and reach the form.
 - Without JavaScript, the content, navigation and native email form must remain available.
@@ -46,7 +46,7 @@
 
 **Files:** Contact form in `alphascript/index.html`, handlers in `alphascript/script.js`, `alphascript/privacy.html`, `alphascript/tests/test_site.py`.
 
-**Interfaces:** Form `POST https://formsubmit.co/alphascript24@gmail.com`, target `_blank`, `rel="noopener noreferrer"`; names `name`, `email`, `project`, `message`, `_honey`, `_subject`, `_template`. Visible `#form-note` is a live status. Alternate mailto points to the same recipient.
+**Interfaces:** Form `POST https://formsubmit.co/alphascript24@gmail.com`, target `_blank`, `rel="noopener"`; names `name`, `email`, `project`, `message`, `_honey`, `_subject`, `_template`. Visible `#form-note` is a live status. Alternate mailto points to the same recipient.
 
 - [x] Write a failing browser test: submit a real form with special characters, intercept only the provider transport and assert POST destination, reply email, project and message payload.
 - [x] Add invalid/whitespace/honeypot cases that assert no outgoing submission, plus edit-preservation and mailto fallback tests.
@@ -61,8 +61,8 @@
 
 **Interfaces:** ZIP root contains `index.html`, `privacy.html`, CSS/JS, logo/favicon and setup instructions; it must work on static hosting without a build step.
 
-- [ ] Document publishing, one-time FormSubmit activation and a subsequent real delivery check, distinguishing them from intercepted local testing.
-- [ ] Run the full browser suite and JavaScript syntax check; inspect desktop/mobile screenshots and create the ZIP without development tests or caches.
-- [ ] Extract ZIP and verify its actual local assets and navigation work; record exact test counts and limitations.
-- [ ] Commit deliverables, then request a fresh whole-change review against this plan and the spec, with a full diff package.
-- [ ] Fix substantive findings with a failing reproduction first; rerun the full suite and report evidence and any remaining activation/deployment requirements.
+- [x] Document publishing, one-time FormSubmit activation and a subsequent real delivery check, distinguishing them from intercepted local testing.
+- [x] Run the full browser suite and JavaScript syntax check; inspect desktop/mobile screenshots and create the ZIP without development tests or caches.
+- [x] Extract ZIP and verify its actual local assets and navigation work; record exact test counts and limitations.
+- [x] Commit deliverables, then request a fresh whole-change review against this plan and the spec, with a full diff package.
+- [x] Fix substantive findings with a failing reproduction first; rerun the full suite and report evidence and any remaining activation/deployment requirements.

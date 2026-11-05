@@ -74,6 +74,20 @@ class SiteTests(unittest.TestCase):
         expect(button).to_have_attribute('aria-expanded','false')
         expect(self.page.locator('#contatti')).to_be_in_viewport()
 
+
+    def test_mobile_landscape_menu_can_scroll_to_contact(self):
+        self.page.set_viewport_size({'width':640,'height':320})
+        self.visit()
+        self.page.locator('.menu-toggle').click()
+        nav = self.page.locator('#main-nav')
+        nav.evaluate('(el)=>el.scrollTop=el.scrollHeight')
+        self.assertGreater(nav.evaluate('(el)=>el.scrollTop'),0)
+        link = nav.locator('a[href="#contatti"]')
+        rect = link.bounding_box()
+        self.assertLessEqual(rect['y']+rect['height'],320)
+        link.click()
+        expect(self.page.locator('#contatti')).to_be_in_viewport()
+
     def test_native_faq_and_navigation_work_without_javascript(self):
         context = self.browser.new_context(java_script_enabled=False, viewport={'width':390,'height':844})
         try:
@@ -112,7 +126,7 @@ class SiteTests(unittest.TestCase):
         requests = []
         def receive(route):
             request = route.request
-            requests.append({'url':request.url, 'method':request.method,
+            requests.append({'url':request.url, 'method':request.method, 'referer':request.headers.get('referer'),
                              'data':parse_qs(request.post_data or '',keep_blank_values=True)})
             route.fulfill(status=200, content_type='text/html', body='<p>Transport intercepted locally. No email sent.</p>')
         self.context.route('https://formsubmit.co/**', receive)
@@ -144,6 +158,16 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(payload['_honey'],[''])
         self.assertNotIn('inviata con successo',self.page.locator('#form-note').inner_text().lower())
         self.assertEqual(self.page.locator('[name=message]').input_value(),'Una dashboard per clienti & ordini.\nVorrei parlarne.')
+
+
+    def test_provider_receives_site_origin_without_contact_data_in_the_referrer(self):
+        # Native form services use the web origin to identify the requesting site.
+        outgoing = self.capture_submission()
+        self.visit(); self.fill_contact()
+        with self.page.expect_popup(timeout=4000) as popup:
+            self.page.locator('#contact-form button[type=submit]').click()
+        popup.value.wait_for_load_state()
+        self.assertEqual(outgoing[0]['referer'],self.base+'/')
 
     def test_whitespace_only_message_stays_on_page_and_is_not_submitted(self):
         outgoing = self.capture_submission()

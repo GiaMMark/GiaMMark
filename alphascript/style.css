@@ -173,7 +173,7 @@ p { text-wrap: pretty; }
   .menu-toggle > span { display: block; width: 19px; height: 1px; background: currentColor; }
   .menu-toggle[aria-expanded=true] > span:first-child { transform: translateY(3.5px) rotate(45deg); }
   .menu-toggle[aria-expanded=true] > span:last-child { transform: translateY(-3.5px) rotate(-45deg); }
-  html.js .main-nav { display: none; position: absolute; top: calc(100% + 1px); left: var(--gutter); right: var(--gutter); width: auto; padding: 16px 22px 22px; background: #151d26; border: 1px solid var(--line-strong); }
+  html.js .main-nav { display: none; position: absolute; top: calc(100% + 1px); left: var(--gutter); right: var(--gutter); width: auto; max-height: calc(100vh - 100px); max-height: calc(100dvh - 100px); overflow-y: auto; overscroll-behavior: contain; padding: 16px 22px 22px; background: #151d26; border: 1px solid var(--line-strong); }
   html.js .main-nav.is-open { display: grid; gap: 0; }
   html.js .main-nav > a { padding-block: 17px; font-size: 17px; border-bottom: 1px solid var(--line); }
   html.js .main-nav .nav-contact { margin-top: 16px; padding: 12px 16px; font-size: 15px; }
