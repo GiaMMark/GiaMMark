@@ -1,3 +1,14 @@
+# FiveM · Fleeca con accesso semplificato
+
+- **[Scarica la Fleeca modificata](projectx-fleecabankrobbery-tstudio-semplificata.zip)**: risorsa completa con il nome della cartella originale.
+- [Installazione, dipendenze e verifiche](Fleeca-semplificata-Installazione.md).
+
+Disattivato il puzzle dei dipendenti. La porta grande del caveau usa lo stesso minigioco delle impronte dello scanner, conservando successo e fallimento. Aggiornate le indicazioni a schermo.
+
+Sintassi Lua, callback del minigioco e integrità dello ZIP verificate localmente. **Progressione, apertura delle porte e sincronizzazione vanno provate sul server FiveM** con licenza e dipendenze originali; la logica principale è protetta da escrow. Il caricamento su GitHub rende disponibile il download e non installa la risorsa sul server.
+
+---
+
 # FiveM · Placeable Items esteso
 
 - **[Scarica il pacchetto configurato](Placeable-Items-esteso.zip)**: solo due file Lua da sostituire in ox_inventory e nella risorsa KQ esistente, senza risorse aggiuntive.

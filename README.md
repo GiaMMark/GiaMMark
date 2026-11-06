@@ -5,6 +5,12 @@ GiaMMark/GiaMMark is a ✨ special ✨ repository because its `README.md` (this 
 You can click the Preview link to take a look at your changes.
 --->
 
+## FiveM · Fleeca con accesso semplificato
+
+[Scarica lo ZIP](downloads/projectx-fleecabankrobbery-tstudio-semplificata.zip) · [Installazione e verifiche](downloads/Fleeca-semplificata-Installazione.md).
+
+Puzzle dei dipendenti disattivato e porta grande del caveau con lo stesso minigioco delle impronte dello scanner. Controlli locali superati; progressione e apertura da verificare sul server FiveM.
+
 ## GiaMMarK_varie · Risorsa unica FiveM
 
 [Scarica lo ZIP](downloads/GiaMMarK_varie.zip) · [Guida di installazione](downloads/GiaMMarK_varie-Installazione.md) · [Verifiche](downloads/GiaMMarK_varie-Verifiche.md).
