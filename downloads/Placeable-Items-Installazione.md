@@ -11,35 +11,29 @@ Tutti i 1.769 item attivi restano posizionabili. Questa versione aggiunge 788 as
 
 I nomi sono presenti nel catalogo GTA consultato, ma alcuni appartengono a DLC recenti, inclusi `m25_1`, `m25_2` e `reh`. Questo non dimostra che la build GTA imposta dal tuo server li includa. **Il nome verificato nel catalogo non equivale a uno spawn verificato in FiveM.**
 
-È inclusa la risorsa **facoltativa** `kq_propcheck`, che non crea oggetti né cambia la configurazione:
-
-1. Copia la cartella `kq_propcheck` nelle risorse del server.
-2. Avviala dopo la risorsa principale con `ensure kq_propcheck`.
-3. Da un client esegui `/kqcheckprops`, quindi apri la console F8. Leggi le righe `NON DISPONIBILE`, con i nomi degli item interessati.
-4. Per quei modelli usa un modello disponibile o sostituisci l'associazione con `hei_prop_heist_box` nel config. Non dare per scontato che il fallback KQ corregga ogni modello esplicitamente configurato ma assente.
-
-Il controllo richiede il nome risorsa esatto `kq_placeable_items` e il file `config.lua`, che carica separatamente all'avvio. Se cambi il config, riavvia anche il controllo; non legge modifiche fatte in seguito dentro il runtime di KQ. Le sue native sono state simulate nei test locali: la disponibilità effettiva deve essere controllata dal client FiveM.
+Verifica i modelli direttamente con il normale posizionamento KQ nel tuo server, leggendo eventuali errori nella console F8. Per un modello assente usa un modello disponibile oppure `hei_prop_heist_box` nella sua associazione. Non dare per scontato che il fallback KQ corregga ogni modello esplicitamente configurato ma assente.
 
 Presenza e validità del modello non verificano collisioni, dimensioni, rotazione o pickup. Prova prima gli oggetti voluminosi, in particolare pietre (`prop_rock_4_c`), pannelli (`prop_plywoodpile_01a`), rampe (`prop_skate_flatramp`) e le strutture per animali. I componenti meccanici generici possono non avere dimensioni adatte al singolo ricambio.
 
 ## Contenuto
 
-- `items.lua`: file ox_inventory completo con pulsante «Posiziona a terra» per tutti i 1.769 item attivi.
-- `kq_placeable_items/`: risorsa originale allegata; modificato esclusivamente `config.lua`.
-- `config.lua`: copia dello stesso config per chi desidera aggiornare solo quello.
+- `ox_inventory/data/items.lua`: file ox_inventory completo con pulsante «Posiziona a terra» per tutti i 1.769 item attivi.
+- `kq_placeable_items/config.lua`: configurazione da sostituire nella risorsa KQ esistente.
 - `mappatura.csv`: elenco di tutti gli item attivi e relativo prop oppure scatola generica.
+- `item_senza_prop.csv`: elenco degli item rimasti con scatola generica.
+
+Il pacchetto contiene soltanto questi due file Lua da sostituire, oltre alla guida e agli elenchi CSV. Non include risorse aggiuntive o nuovi manifest. Sono richiesti ox_inventory e KQ Placeable Items già installati e funzionanti.
 
 1046 item hanno un'associazione GTA; i restanti 723 mantengono `hei_prop_heist_box`, come richiesto. I modelli GTA equivalenti non riproducono necessariamente colori, marche o modelli personalizzati degli item. Non sono stati inventati nomi di prop custom. Il catalogo pubblico usato per controllare i nomi è https://github.com/DurtyFree/gta-v-data-dumps/blob/master/ObjectList.ini ; la presenza nel catalogo non prova disponibilità e collisioni nella build del tuo server.
 
 ## Installazione
 
 1. Fai una copia dei file attuali del server. Non sovrascrivere eventuali modifiche successive agli allegati senza confrontarle.
-2. Sostituisci `ox_inventory/data/items.lua` con `items.lua` incluso qui. Il file contiene le definizioni originali e aggiunge i pulsanti alla fine, prima del `return items`: conserva anche quel blocco nelle modifiche future.
-3. Sostituisci `kq_placeable_items/config.lua` con quello incluso. In alternativa usa la cartella completa della risorsa, se corrisponde alla tua installazione e licenza.
-4. Mantieni l'ordine di avvio esistente: framework e database, ox_inventory, quindi kq_placeable_items. Riavvia il server in manutenzione per ricaricare coerentemente gli item e la risorsa.
-5. La persistenza era già abilitata negli allegati. Se installi KQ da zero, importa lo schema SQL secondo `_INSTALLATION.md`; se la tabella esiste già, controlla la versione e applica solo l'eventuale migrazione prevista, senza ricreare o cancellare dati.
+2. Sostituisci il file della tua installazione `ox_inventory/data/items.lua` con quello nello stesso percorso dello ZIP. Il file contiene le definizioni originali e aggiunge i pulsanti alla fine, prima del `return items`: conserva anche quel blocco nelle modifiche future.
+3. Sostituisci soltanto il file `kq_placeable_items/config.lua` della tua installazione con quello incluso. Conserva tutti gli altri file della risorsa; non sostituire la cartella completa con quella dello ZIP.
+4. Riavvia il server in manutenzione per ricaricare gli item e la configurazione KQ. Mantieni gli avvii gia presenti nel tuo `server.cfg`: non aggiungere nuove risorse o nuovi `ensure`.
 
-La configurazione originale del database (`mysql` / mysql-async), gli eventi di caricamento framework, il target, i comandi e la persistenza sono conservati. Anche i riferimenti originali a `0r-pack1` e `/assetpacks` nel manifest sono conservati: questa consegna non installa quelle dipendenze e non sostituisce l'autorizzazione della risorsa escrow.
+La configurazione originale del database (`mysql` / mysql-async), gli eventi di caricamento framework, il target, i comandi e la persistenza sono conservati. SQL, manifest, codice e dipendenze delle risorse gia installate non vengono sostituiti dal pacchetto.
 
 ## Cosa è cambiato
 
