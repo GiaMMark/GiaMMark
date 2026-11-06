@@ -1,3 +1,15 @@
+# FiveM · Placeable Items esteso
+
+- **[Scarica il pacchetto configurato](Placeable-Items-esteso.zip)**: file ox_inventory, risorsa KQ configurata e controllo facoltativo dei modelli.
+- [Istruzioni di installazione e limiti](Placeable-Items-Installazione.md).
+- [Elenco completo delle associazioni](Placeable-Items-mappatura.csv) · [Item rimasti con scatola generica](Placeable-Items-senza-prop.csv).
+
+**1.769 item attivi posizionabili: 1.046 con prop GTA associato e 723 con scatola generica.** Aggiunte 788 associazioni rispetto alla prima consegna; incluse approssimazioni visive autorizzate. Forme, colori, confezioni e varianti custom possono differire: i dettagli sono nel CSV.
+
+Controlli Lua e integrità dello ZIP superati. **Spawn, collisioni, raccolta e persistenza devono ancora essere provati nel server FiveM.** Alcuni modelli dipendono da DLC recenti: la guida spiega il controllo facoltativo `/kqcheckprops`. Il caricamento su GitHub rende disponibili i download e non installa né avvia la risorsa su un server.
+
+---
+
 # GiaMMarK_varie · Cinque sistemi FiveM in una risorsa
 
 - **[Scarica GiaMMarK_varie.zip](GiaMMarK_varie.zip)**: crafting, ricerca bidoni, telefoni pubblici, muscle rebuild e carrello.
