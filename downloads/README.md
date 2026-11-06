@@ -1,3 +1,15 @@
+# GiaMMarK_varie · Cinque sistemi FiveM in una risorsa
+
+- **[Scarica GiaMMarK_varie.zip](GiaMMarK_varie.zip)**: crafting, ricerca bidoni, telefoni pubblici, muscle rebuild e carrello.
+- [Installazione e migrazione](GiaMMarK_varie-Installazione.md): dipendenze, disattivazione degli originali, export degli item e garage JG.
+- [Verifiche eseguite e limiti](GiaMMarK_varie-Verifiche.md).
+
+Una sola cartella `GiaMMarK_varie`, un solo `ensure GiaMMarK_varie`. Configurazioni separate e interfacce NUI isolate; conservati SQL, eventi, UID e stash originali. Aggiornare i due export di ox_inventory e impostare l'ID reale del garage pubblico prima dell'uso.
+
+Controlli Lua/JavaScript, caricamento congiunto dei moduli e prove delle interfacce in Chromium superati. **Serve ancora una prova sul proprio server FiveM** con ESX, ox_inventory, JG e LB Phone reali; le dipendenze non sono incluse nello ZIP.
+
+---
+
 # Oro Nero 7.14 · Un sito più essenziale e richieste via email
 
 - [Progetto completo 7.14](Oro-Nero-7.14-Sito-Modulo-Email.zip): sorgenti, build, fotografie, traduzioni e 102 test.
